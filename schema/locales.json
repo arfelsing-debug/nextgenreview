@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "canonical": "en",
+  "locales": {
+    "en": {
+      "label": "English",
+      "html_lang": "en",
+      "og_locale": "en_US",
+      "active": true
+    },
+    "cs": {
+      "label": "Čeština",
+      "html_lang": "cs-CZ",
+      "og_locale": "cs_CZ",
+      "active": true
+    },
+    "de": {
+      "label": "Deutsch",
+      "html_lang": "de-DE",
+      "og_locale": "de_DE",
+      "active": false
+    },
+    "pl": {
+      "label": "Polski",
+      "html_lang": "pl-PL",
+      "og_locale": "pl_PL",
+      "active": false
+    },
+    "es": {
+      "label": "Español",
+      "html_lang": "es-ES",
+      "og_locale": "es_ES",
+      "active": false
+    }
+  },
+  "rules": {
+    "translation_status": [
+      "current",
+      "review_required",
+      "draft",
+      "missing"
+    ],
+    "substantive_source_change_marks_translations": "review_required"
+  }
+}
