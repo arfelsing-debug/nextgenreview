@@ -45,3 +45,9 @@ Each public Review landing page should declare:
 - x-default pointing to the canonical English landing page.
 
 Inactive locales must not be emitted in hreflang until their corresponding public page exists.
+
+## Standard participant flow
+
+The standard Adamas Review questionnaire experience is six section screens, one per dimension. Each section presents eight statements together, representing four two-statement subdimensions. Participants must answer all eight statements before continuing. Back navigation preserves prior responses, progress is expressed as section 1–6, Guidance remains available throughout, and responses persist securely as they are selected.
+
+The 48-statement / six-screen rhythm is part of the common Adamas Diagnostic Engine experience unless a documented accessibility requirement demands an alternate presentation.
