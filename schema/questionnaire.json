@@ -3,7 +3,10 @@
   "product": "Adamas NextGen Readiness Review",
   "languages": [
     "en",
-    "cs"
+    "cs",
+    "de",
+    "pl",
+    "es"
   ],
   "scale": [
     {
@@ -116,5 +119,10 @@
         "NRR-Q48"
       ]
     }
-  ]
+  ],
+  "active_languages": [
+    "en",
+    "cs"
+  ],
+  "canonical_language": "en"
 }
