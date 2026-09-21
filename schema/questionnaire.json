@@ -1,0 +1,120 @@
+{
+  "version": "0.1.0",
+  "product": "Adamas NextGen Readiness Review",
+  "languages": [
+    "en",
+    "cs"
+  ],
+  "scale": [
+    {
+      "value": 1,
+      "key": "not_yet"
+    },
+    {
+      "value": 2,
+      "key": "rarely"
+    },
+    {
+      "value": 3,
+      "key": "partly"
+    },
+    {
+      "value": 4,
+      "key": "largely"
+    },
+    {
+      "value": 5,
+      "key": "established"
+    },
+    {
+      "value": null,
+      "key": "dont_know",
+      "flag": "uncertainty"
+    },
+    {
+      "value": null,
+      "key": "not_applicable",
+      "flag": "na"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "identity-purpose",
+      "questions": [
+        "NRR-Q01",
+        "NRR-Q02",
+        "NRR-Q03",
+        "NRR-Q04",
+        "NRR-Q05",
+        "NRR-Q06",
+        "NRR-Q07",
+        "NRR-Q08"
+      ]
+    },
+    {
+      "id": "family-enterprise",
+      "questions": [
+        "NRR-Q09",
+        "NRR-Q10",
+        "NRR-Q11",
+        "NRR-Q12",
+        "NRR-Q13",
+        "NRR-Q14",
+        "NRR-Q15",
+        "NRR-Q16"
+      ]
+    },
+    {
+      "id": "ownership-wealth",
+      "questions": [
+        "NRR-Q17",
+        "NRR-Q18",
+        "NRR-Q19",
+        "NRR-Q20",
+        "NRR-Q21",
+        "NRR-Q22",
+        "NRR-Q23",
+        "NRR-Q24"
+      ]
+    },
+    {
+      "id": "governance-decisions",
+      "questions": [
+        "NRR-Q25",
+        "NRR-Q26",
+        "NRR-Q27",
+        "NRR-Q28",
+        "NRR-Q29",
+        "NRR-Q30",
+        "NRR-Q31",
+        "NRR-Q32"
+      ]
+    },
+    {
+      "id": "capability-experience",
+      "questions": [
+        "NRR-Q33",
+        "NRR-Q34",
+        "NRR-Q35",
+        "NRR-Q36",
+        "NRR-Q37",
+        "NRR-Q38",
+        "NRR-Q39",
+        "NRR-Q40"
+      ]
+    },
+    {
+      "id": "responsibility-transition",
+      "questions": [
+        "NRR-Q41",
+        "NRR-Q42",
+        "NRR-Q43",
+        "NRR-Q44",
+        "NRR-Q45",
+        "NRR-Q46",
+        "NRR-Q47",
+        "NRR-Q48"
+      ]
+    }
+  ]
+}
