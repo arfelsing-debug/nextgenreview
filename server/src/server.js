@@ -1,4 +1,4 @@
-import express from "express";import helmet from "helmet";import cookieParser from "cookie-parser";import{rateLimit}from"express-rate-limit";import{randomToken,sha256,sessionCookieOptions}from"./security.js";import{pgstore as store}from"./pgstore.js";import{issueCsrf,verifyCsrf}from"./csrf.js";
+import express from "express";import path from "node:path";import{fileURLToPath}from"node:url";import helmet from "helmet";import cookieParser from "cookie-parser";import{rateLimit}from"express-rate-limit";import{randomToken,sha256,sessionCookieOptions}from"./security.js";import{pgstore as store}from"./pgstore.js";import{issueCsrf,verifyCsrf}from"./csrf.js";
 const app=express();app.use(helmet());app.use(express.json({limit:"32kb"}));app.use(cookieParser());app.use("/api/",rateLimit({windowMs:60_000,limit:60,standardHeaders:"draft-8",legacyHeaders:false}));
 const ADMIN=process.env.NEXTGEN_ADMIN_KEY;
 function admin(req,res,next){if(!ADMIN||req.get("x-nextgen-admin-key")!==ADMIN)return res.status(403).json({error:"forbidden"});next()}
@@ -8,5 +8,5 @@ app.delete("/api/admin/invitations/:id",admin,async(req,res)=>{const ok=await st
 app.get("/api/session",async(req,res)=>{const s=await current(req);if(!s)return res.status(401).json({error:"unauthorized"});res.json({language:s.language,completed:s.completed,responses:(await store.responses(s.id))?.answers||{}})});
 app.put("/api/responses",csrf,async(req,res)=>{const s=req.reviewSession;if(!s)return res.status(401).json({error:"unauthorized"});const answers=req.body.answers||{};for(const[k,v]of Object.entries(answers)){if(!/^NRR-Q(0[1-9]|[1-3][0-9]|4[0-8])$/.test(k)||![1,2,3,4,5,"dk","na"].includes(v))return res.status(400).json({error:"invalid_response"})}await store.saveResponses(s.id,{answers});res.json({ok:true})});
 app.post("/api/complete",csrf,async(req,res)=>{const s=req.reviewSession;if(!s)return res.status(401).json({error:"unauthorized"});const a=(await store.responses(s.id))?.answers||{};if(Object.keys(a).length!==48)return res.status(400).json({error:"incomplete"});await store.completeSession(s.id);res.json({ok:true})});
-app.get("/health",(req,res)=>res.json({ok:true,service:"nextgenreview"}));
+app.get("/health",(req,res)=>res.json({ok:true,service:"nextgenreview"}));const here=path.dirname(fileURLToPath(import.meta.url)),dist=path.resolve(here,"../../dist");app.use(express.static(dist));app.get("/{*splat}",(req,res)=>res.sendFile(path.join(dist,"index.html")));
 const port=Number(process.env.PORT||3001);app.listen(port,()=>console.log("NextGen server listening",port));
