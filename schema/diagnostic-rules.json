@@ -1,0 +1,283 @@
+{
+  "version": "0.1.0",
+  "principles": {
+    "overall_score_exposed": false,
+    "minimum_answered_per_dimension": 5,
+    "uncertainty_is_signal": true,
+    "na_excluded_from_numeric_calculation": true
+  },
+  "subdimensions": [
+    {
+      "id": "personal-direction",
+      "dimension": "identity-purpose",
+      "questions": [
+        "NRR-Q01",
+        "NRR-Q02"
+      ]
+    },
+    {
+      "id": "values",
+      "dimension": "identity-purpose",
+      "questions": [
+        "NRR-Q03",
+        "NRR-Q04"
+      ]
+    },
+    {
+      "id": "relationship-with-wealth",
+      "dimension": "identity-purpose",
+      "questions": [
+        "NRR-Q05",
+        "NRR-Q06"
+      ]
+    },
+    {
+      "id": "personal-role",
+      "dimension": "identity-purpose",
+      "questions": [
+        "NRR-Q07",
+        "NRR-Q08"
+      ]
+    },
+    {
+      "id": "history-context",
+      "dimension": "family-enterprise",
+      "questions": [
+        "NRR-Q09",
+        "NRR-Q10"
+      ]
+    },
+    {
+      "id": "business-understanding",
+      "dimension": "family-enterprise",
+      "questions": [
+        "NRR-Q11",
+        "NRR-Q12"
+      ]
+    },
+    {
+      "id": "people-institutions",
+      "dimension": "family-enterprise",
+      "questions": [
+        "NRR-Q13",
+        "NRR-Q14"
+      ]
+    },
+    {
+      "id": "wider-family-system",
+      "dimension": "family-enterprise",
+      "questions": [
+        "NRR-Q15",
+        "NRR-Q16"
+      ]
+    },
+    {
+      "id": "ownership-literacy",
+      "dimension": "ownership-wealth",
+      "questions": [
+        "NRR-Q17",
+        "NRR-Q18"
+      ]
+    },
+    {
+      "id": "financial-literacy",
+      "dimension": "ownership-wealth",
+      "questions": [
+        "NRR-Q19",
+        "NRR-Q20"
+      ]
+    },
+    {
+      "id": "structures",
+      "dimension": "ownership-wealth",
+      "questions": [
+        "NRR-Q21",
+        "NRR-Q22"
+      ]
+    },
+    {
+      "id": "wealth-responsibility",
+      "dimension": "ownership-wealth",
+      "questions": [
+        "NRR-Q23",
+        "NRR-Q24"
+      ]
+    },
+    {
+      "id": "decision-map",
+      "dimension": "governance-decisions",
+      "questions": [
+        "NRR-Q25",
+        "NRR-Q26"
+      ]
+    },
+    {
+      "id": "voice-challenge",
+      "dimension": "governance-decisions",
+      "questions": [
+        "NRR-Q27",
+        "NRR-Q28"
+      ]
+    },
+    {
+      "id": "collective-decisions",
+      "dimension": "governance-decisions",
+      "questions": [
+        "NRR-Q29",
+        "NRR-Q30"
+      ]
+    },
+    {
+      "id": "governance-practice",
+      "dimension": "governance-decisions",
+      "questions": [
+        "NRR-Q31",
+        "NRR-Q32"
+      ]
+    },
+    {
+      "id": "independent-experience",
+      "dimension": "capability-experience",
+      "questions": [
+        "NRR-Q33",
+        "NRR-Q34"
+      ]
+    },
+    {
+      "id": "leadership-resilience",
+      "dimension": "capability-experience",
+      "questions": [
+        "NRR-Q35",
+        "NRR-Q36"
+      ]
+    },
+    {
+      "id": "professional-development",
+      "dimension": "capability-experience",
+      "questions": [
+        "NRR-Q37",
+        "NRR-Q38"
+      ]
+    },
+    {
+      "id": "adviser-literacy",
+      "dimension": "capability-experience",
+      "questions": [
+        "NRR-Q39",
+        "NRR-Q40"
+      ]
+    },
+    {
+      "id": "expectations",
+      "dimension": "responsibility-transition",
+      "questions": [
+        "NRR-Q41",
+        "NRR-Q42"
+      ]
+    },
+    {
+      "id": "preparation-path",
+      "dimension": "responsibility-transition",
+      "questions": [
+        "NRR-Q43",
+        "NRR-Q44"
+      ]
+    },
+    {
+      "id": "crisis-readiness",
+      "dimension": "responsibility-transition",
+      "questions": [
+        "NRR-Q45",
+        "NRR-Q46"
+      ]
+    },
+    {
+      "id": "stewardship-agency",
+      "dimension": "responsibility-transition",
+      "questions": [
+        "NRR-Q47",
+        "NRR-Q48"
+      ]
+    }
+  ],
+  "classification_rules": [
+    {
+      "key": "established",
+      "condition": "mean >= 4.0 and no answered item < 3"
+    },
+    {
+      "key": "developing",
+      "condition": "mean >= 3.0 and mean < 4.0"
+    },
+    {
+      "key": "exposed",
+      "condition": "mean < 3.0 or any critical item <= 2"
+    },
+    {
+      "key": "unclear",
+      "condition": "insufficient answered items or uncertainty density >= 0.375"
+    }
+  ],
+  "critical_questions": [
+    "NRR-Q19",
+    "NRR-Q24",
+    "NRR-Q25",
+    "NRR-Q26",
+    "NRR-Q28",
+    "NRR-Q39",
+    "NRR-Q41",
+    "NRR-Q43",
+    "NRR-Q45",
+    "NRR-Q46"
+  ],
+  "cross_signal_rules": [
+    {
+      "id": "expectation-gap",
+      "questions": [
+        "NRR-Q41",
+        "NRR-Q42"
+      ],
+      "trigger": "absolute difference >= 2 or either <= 2"
+    },
+    {
+      "id": "knowledge-to-practice-gap",
+      "questions": [
+        "NRR-Q31",
+        "NRR-Q32"
+      ],
+      "trigger": "Q31 - Q32 >= 2"
+    },
+    {
+      "id": "capability-to-experience-gap",
+      "questions": [
+        "NRR-Q37",
+        "NRR-Q35"
+      ],
+      "trigger": "Q37 - Q35 >= 2"
+    },
+    {
+      "id": "ownership-literacy-gap",
+      "questions": [
+        "NRR-Q17",
+        "NRR-Q22"
+      ],
+      "trigger": "Q17 >= 4 and Q22 <= 2"
+    },
+    {
+      "id": "crisis-exposure",
+      "questions": [
+        "NRR-Q45",
+        "NRR-Q46"
+      ],
+      "trigger": "either <= 2 or dont_know"
+    },
+    {
+      "id": "voice-without-structure",
+      "questions": [
+        "NRR-Q27",
+        "NRR-Q26"
+      ],
+      "trigger": "Q27 >= 4 and Q26 <= 2"
+    }
+  ]
+}
