@@ -1,0 +1,46 @@
+{
+  "methodology": "48/6/24",
+  "reviews": [
+    {
+      "id": "family-continuity",
+      "name": "Family Continuity Review",
+      "status": "live"
+    },
+    {
+      "id": "nextgen-readiness",
+      "name": "NextGen Readiness Review",
+      "status": "development"
+    },
+    {
+      "id": "founder-dependency",
+      "name": "Founder Dependency Review",
+      "status": "planned"
+    },
+    {
+      "id": "family-governance",
+      "name": "Family Governance Review",
+      "status": "planned"
+    },
+    {
+      "id": "trustee-governance",
+      "name": "Trustee Governance Review",
+      "status": "planned"
+    },
+    {
+      "id": "family-office-institutionalisation",
+      "name": "Family Office Institutionalisation Review",
+      "status": "planned"
+    },
+    {
+      "id": "stewardship",
+      "name": "Stewardship Review",
+      "status": "planned"
+    },
+    {
+      "id": "annual-continuity-monitoring",
+      "name": "Annual Continuity Monitoring",
+      "status": "planned",
+      "longitudinal": true
+    }
+  ]
+}
