@@ -1,11 +1,11 @@
 # Adamas NextGen Readiness Review™
 
-Standalone bilingual diagnostic for rising-generation members of wealth-owning and business-owning families.
+Standalone multilingual diagnostic for rising-generation members of wealth-owning and business-owning families.
 
 ## Product principles
 
 - Entirely separate from the Adamas Family Continuity Review™.
-- English and Czech are first-class languages from the outset.
+- English, Czech and German use the same question IDs and scoring model.
 - 48 statements grouped into six dimensions.
 - Language-neutral question IDs and scoring.
 - Participant-facing output focuses on readiness, development and practical next actions rather than a simplistic score.
@@ -29,4 +29,4 @@ Standalone bilingual diagnostic for rising-generation members of wealth-owning a
 
 ## Status
 
-Initial product architecture established 21 September 2026. Questionnaire draft and bilingual content implementation are the next development stage.
+English and Czech staging implementation exists. German participant content and invitation support are implemented in source; native-speaker editorial review and end-to-end staging sign-off are required before production invitations.
