@@ -7,6 +7,7 @@ export const pgstore={
  async listInvitations(){const{rows}=await pool.query("SELECT id,language,expires_at,login_limit,login_count,status,label,created_at FROM nrr_invitations ORDER BY created_at DESC LIMIT 500");return rows},
  async createSession(v){await pool.query("INSERT INTO nrr_sessions(id,invitation_id,language,expires_at,completed,csrf_hash) VALUES($1,$2,$3,$4,false,$5)",[v.id,v.invitationId,v.language,v.expiresAt,v.csrfHash]);return v},
  async session(id){const{rows}=await pool.query("SELECT * FROM nrr_sessions WHERE id=$1",[id]);const x=rows[0];return x?{id:x.id,invitationId:x.invitation_id,language:x.language,expiresAt:x.expires_at,completed:x.completed,csrfHash:x.csrf_hash}:null},
+ async rotateCsrf(id,hash){await pool.query("UPDATE nrr_sessions SET csrf_hash=$2 WHERE id=$1",[id,hash])},
  async saveResponses(id,payload){await pool.query(`INSERT INTO nrr_responses(session_id,answers) VALUES($1,$2::jsonb) ON CONFLICT(session_id) DO UPDATE SET answers=EXCLUDED.answers,updated_at=now()`,[id,JSON.stringify(payload.answers)]);},
  async responses(id){const{rows}=await pool.query("SELECT answers,updated_at FROM nrr_responses WHERE session_id=$1",[id]);return rows[0]||null},
  async completeSession(id){await pool.query("UPDATE nrr_sessions SET completed=true WHERE id=$1",[id])}
