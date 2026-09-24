@@ -6,7 +6,7 @@ The report converts 48 responses into a practical portrait of readiness. It must
 
 ## Proposed report sequence
 
-1. Cover: Confidential NextGen Readiness Report
+1. Cover: Confidential NextGen Readiness Report, using the canonical Prague barometer artwork (Dancing House upper left, Kafka head lower right, six readiness dimensions and red/amber/green indicators). The same master artwork is used for English, Czech and German reports.
 2. How to read this report
 3. NextGen Readiness Portrait: six dimensions
 4. Three strongest foundations
