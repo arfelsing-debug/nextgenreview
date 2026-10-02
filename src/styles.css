@@ -16,3 +16,14 @@
 .acr-subdimension-group .acr-traffic-score{font-size:9px;gap:5px}
 .acr-subdimension-group .acr-traffic-light i{width:7px;height:7px}
 @media print{.acr-traffic-light,.acr-traffic-light i{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+.acr-statement legend{display:flex;align-items:flex-start;gap:10px;width:100%}
+.acr-question-text{flex:1}
+.acr-question-help-trigger{flex:0 0 auto;width:26px;height:26px;border:1px solid var(--acr-gold);border-radius:50%;background:transparent;color:var(--acr-green);font:700 12px/24px Ubuntu,Arial,sans-serif;text-align:center;cursor:pointer;padding:0;margin-top:1px}
+.acr-question-help-trigger:hover,.acr-question-help-trigger[aria-expanded="true"]{background:var(--acr-cream)}
+.acr-question-help{position:relative;margin:20px 0 8px;padding:22px 44px 20px 24px;background:var(--acr-cream);border-left:3px solid var(--acr-gold);max-width:980px}
+.acr-question-help p{margin:0 0 14px;font:15px/1.65 "EB Garamond",Garamond,Georgia,serif;color:var(--acr-ink)}
+.acr-question-help p:last-child{margin-bottom:0}
+.acr-question-help b{display:block;margin-bottom:3px;color:var(--acr-green);font:700 9px/1.4 Ubuntu,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.acr-question-help-close{position:absolute;top:12px;right:14px;border:0;background:transparent;color:var(--acr-green);font-size:20px;cursor:pointer}
+@media(max-width:700px){.acr-statement legend{gap:8px}.acr-question-help{padding:18px 38px 18px 18px}}
