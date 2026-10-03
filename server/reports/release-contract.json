@@ -1,0 +1,30 @@
+{
+  "content_version": "2.0.0",
+  "numbered_pages": 17,
+  "cover_pages": 1,
+  "supported_languages": [
+    "en",
+    "cs",
+    "de"
+  ],
+  "shared_model": "server/reports/model.js",
+  "required_interpretation_fields": [
+    "finding",
+    "action",
+    "progress",
+    "support",
+    "blocked",
+    "trace"
+  ],
+  "required_subdimensions": 24,
+  "required_question_targets": 48,
+  "translation_fallback": "forbidden",
+  "new_language_release_checks": [
+    "Translate all common report text and all 24 complete subdimension records, including 48 question-specific actions.",
+    "Use the existing shared scoring, interpretation and priority selection; do not duplicate the analytical model by language.",
+    "Match translation version to source content version. Missing translations must block report generation.",
+    "Extend automated answer-combination and 18-page checks to the new language.",
+    "Render and inspect every final page for text overlap, clipping and readable typography.",
+    "Extend the browser controls and UI messages; run server tests and browser language/download checks before release."
+  ]
+}

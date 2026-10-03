@@ -1,0 +1,1212 @@
+{
+  "version": "2.0.0",
+  "pages": [
+    {
+      "number": 0,
+      "title": "",
+      "subtitle": "",
+      "items": []
+    },
+    {
+      "number": 1,
+      "title": "Your Confidential NextGen Readiness Report",
+      "subtitle": "",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "Prepared for {{participant}} | Generated {{date}}"
+        },
+        {
+          "type": "heading",
+          "text": "Dear Participant,"
+        },
+        {
+          "type": "paragraph",
+          "text": "Thank you for completing the Adamas NextGen Readiness Review. This report considers your understanding of the family enterprise, your relationship with ownership, your practical experience and the responsibilities you may choose to assume."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your reported strengths include {{model.strengths.0.label}}, {{model.strengths.1.label}}, {{model.strengths.2.label}}."
+        },
+        {
+          "type": "paragraph",
+          "text": "The principal priorities are {{model.priorities.0.label}}, {{model.priorities.1.label}}, {{model.priorities.2.label}}. Each finding includes a practical next step and evidence by which progress can be reviewed."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your preparation and the family arrangements both deserve attention. Some steps are yours to take; others require information, support or a decision from an existing authority holder. A fulfilling role outside the family remains a valid choice."
+        },
+        {
+          "type": "heading",
+          "text": "Alexander"
+        },
+        {
+          "type": "heading",
+          "text": "Alexander von der Vellen"
+        },
+        {
+          "type": "paragraph",
+          "text": "Founder, Adamas Advisors"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "How to Read Your Report",
+      "subtitle": "Read the scores alongside the explanations and the practical tests.",
+      "items": [
+        {
+          "type": "kicker",
+          "text": "Maturity"
+        },
+        {
+          "type": "paragraph",
+          "text": "Green (3/3) reflects a strong self-reported foundation. Amber (2/3) indicates developing preparation. Red (1/3) identifies limited preparation or a dependency. Grey remains unscored where responses are insufficient. A score is not a judgement of your character or an appointment to a role."
+        },
+        {
+          "type": "kicker",
+          "text": "Visibility and verification"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reported visibility describes how completely you answered the relevant statements. It does not mean that documents or practical performance have been independently verified. Use explanations, records and supervised exercises to test your understanding."
+        },
+        {
+          "type": "kicker",
+          "text": "Understanding the gap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ask whether the gap concerns knowledge, access to information, practical experience, mutual expectations or a role you may not wish to take. The questionnaire can indicate where to investigate; it cannot establish the cause or another family member's views."
+        },
+        {
+          "type": "kicker",
+          "text": "Using the recommendations"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each subdimension names the relevant question pair, explains the finding and offers an exercise with evidence of progress. Confirm a sponsor, information access and authority before acting. An unscored area should be clarified before adopting a substantive development task."
+        },
+        {
+          "type": "kicker",
+          "text": "Scoring discipline"
+        },
+        {
+          "type": "paragraph",
+          "text": "Both statements are needed to score a subdimension. A dimension requires at least five numeric responses and fewer than three unknown answers. Not applicable responses are excluded. Scores use unrounded averages; no overall readiness percentage is produced."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Your NextGen Readiness at a Glance",
+      "subtitle": "The 24 subdimensions show variation within the six broad dimensions.",
+      "items": []
+    },
+    {
+      "number": 4,
+      "title": "Strengths to Preserve",
+      "subtitle": "Strong preparation deserves a demanding, proportionate next stage.",
+      "items": [
+        {
+          "type": "heading",
+          "text": "1. {{model.strengths.0.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Your foundation",
+          "text": "{{model.strengths.0.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next challenge",
+          "text": "{{model.strengths.0.stretch}}"
+        },
+        {
+          "type": "field",
+          "label": "Evidence",
+          "text": "{{model.strengths.0.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Support",
+          "text": "{{model.strengths.0.support}}"
+        },
+        {
+          "type": "heading",
+          "text": "2. {{model.strengths.1.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Your foundation",
+          "text": "{{model.strengths.1.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next challenge",
+          "text": "{{model.strengths.1.stretch}}"
+        },
+        {
+          "type": "field",
+          "label": "Evidence",
+          "text": "{{model.strengths.1.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Support",
+          "text": "{{model.strengths.1.support}}"
+        },
+        {
+          "type": "heading",
+          "text": "3. {{model.strengths.2.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Your foundation",
+          "text": "{{model.strengths.2.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next challenge",
+          "text": "{{model.strengths.2.stretch}}"
+        },
+        {
+          "type": "field",
+          "label": "Evidence",
+          "text": "{{model.strengths.2.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Support",
+          "text": "{{model.strengths.2.support}}"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Dependencies Requiring Your Attention",
+      "subtitle": "These priorities reflect the response pattern and require confirmation in conversation.",
+      "items": [
+        {
+          "type": "heading",
+          "text": "1. {{model.priorities.0.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding",
+          "text": "{{model.priorities.0.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Why act",
+          "text": "Responsibility in this area could arrive before preparation or the supporting arrangements are sufficiently tested."
+        },
+        {
+          "type": "field",
+          "label": "Who can help",
+          "text": "{{model.priorities.0.support}}"
+        },
+        {
+          "type": "field",
+          "label": "First move",
+          "text": "{{model.priorities.0.blocked}}"
+        },
+        {
+          "type": "heading",
+          "text": "2. {{model.priorities.1.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding",
+          "text": "{{model.priorities.1.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Why act",
+          "text": "Responsibility in this area could arrive before preparation or the supporting arrangements are sufficiently tested."
+        },
+        {
+          "type": "field",
+          "label": "Who can help",
+          "text": "{{model.priorities.1.support}}"
+        },
+        {
+          "type": "field",
+          "label": "First move",
+          "text": "{{model.priorities.1.blocked}}"
+        },
+        {
+          "type": "heading",
+          "text": "3. {{model.priorities.2.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding",
+          "text": "{{model.priorities.2.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Why act",
+          "text": "Responsibility in this area could arrive before preparation or the supporting arrangements are sufficiently tested."
+        },
+        {
+          "type": "field",
+          "label": "Who can help",
+          "text": "{{model.priorities.2.support}}"
+        },
+        {
+          "type": "field",
+          "label": "First move",
+          "text": "{{model.priorities.2.blocked}}"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Your Identity & Purpose",
+      "subtitle": "",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.0.visibility}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.0.summary}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.0.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.0.trace}})",
+          "text": "{{model.subs.0.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.0.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.0.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.1.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.1.trace}})",
+          "text": "{{model.subs.1.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.1.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.1.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.2.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.2.trace}})",
+          "text": "{{model.subs.2.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.2.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.2.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.3.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.3.trace}})",
+          "text": "{{model.subs.3.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.3.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.3.progress}}"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Your Family Enterprise Understanding",
+      "subtitle": "",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.1.visibility}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.1.summary}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.4.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.4.trace}})",
+          "text": "{{model.subs.4.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.4.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.4.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.5.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.5.trace}})",
+          "text": "{{model.subs.5.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.5.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.5.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.6.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.6.trace}})",
+          "text": "{{model.subs.6.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.6.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.6.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.7.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.7.trace}})",
+          "text": "{{model.subs.7.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.7.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.7.progress}}"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Your Ownership & Wealth",
+      "subtitle": "",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.2.visibility}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.2.summary}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.8.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.8.trace}})",
+          "text": "{{model.subs.8.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.8.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.8.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.9.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.9.trace}})",
+          "text": "{{model.subs.9.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.9.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.9.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.10.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.10.trace}})",
+          "text": "{{model.subs.10.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.10.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.10.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.11.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.11.trace}})",
+          "text": "{{model.subs.11.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.11.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.11.progress}}"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Your Governance",
+      "subtitle": "",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.3.visibility}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.3.summary}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.12.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.12.trace}})",
+          "text": "{{model.subs.12.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.12.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.12.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.13.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.13.trace}})",
+          "text": "{{model.subs.13.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.13.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.13.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.14.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.14.trace}})",
+          "text": "{{model.subs.14.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.14.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.14.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.15.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.15.trace}})",
+          "text": "{{model.subs.15.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.15.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.15.progress}}"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Your Capability & Experience",
+      "subtitle": "",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.4.visibility}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.4.summary}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.16.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.16.trace}})",
+          "text": "{{model.subs.16.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.16.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.16.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.17.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.17.trace}})",
+          "text": "{{model.subs.17.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.17.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.17.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.18.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.18.trace}})",
+          "text": "{{model.subs.18.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.18.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.18.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.19.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.19.trace}})",
+          "text": "{{model.subs.19.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.19.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.19.progress}}"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Your Responsibility & Transition",
+      "subtitle": "",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.5.visibility}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.dims.5.summary}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.20.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.20.trace}})",
+          "text": "{{model.subs.20.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.20.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.20.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.21.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.21.trace}})",
+          "text": "{{model.subs.21.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.21.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.21.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.22.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.22.trace}})",
+          "text": "{{model.subs.22.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.22.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.22.progress}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.subs.23.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Finding ({{model.subs.23.trace}})",
+          "text": "{{model.subs.23.finding}}"
+        },
+        {
+          "type": "field",
+          "label": "Next step",
+          "text": "{{model.subs.23.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Progress",
+          "text": "{{model.subs.23.progress}}"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Cross-Dimensional Insights",
+      "subtitle": "Use the relationships between findings to decide what should happen first.",
+      "items": [
+        {
+          "type": "heading",
+          "text": "{{model.signals.0.title}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.signals.0.meaning}}"
+        },
+        {
+          "type": "field",
+          "label": "Practical implication",
+          "text": "{{model.signals.0.action}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.signals.1.title}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.signals.1.meaning}}"
+        },
+        {
+          "type": "field",
+          "label": "Practical implication",
+          "text": "{{model.signals.1.action}}"
+        },
+        {
+          "type": "heading",
+          "text": "{{model.signals.2.title}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{model.signals.2.meaning}}"
+        },
+        {
+          "type": "field",
+          "label": "Practical implication",
+          "text": "{{model.signals.2.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Further signals",
+          "text": "{{model.signals.3.title}}; {{model.signals.4.title}}; {{model.signals.5.title}}. Review these alongside the relevant dimension actions."
+        },
+        {
+          "type": "kicker",
+          "text": "Your preparation and the family arrangements"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ask separately: am I willing and able to undertake the role, and can the family provide information, clear authority and supervision? The answers may differ. If you are prepared but access or delegation is missing, agree who should resolve the arrangement. If a role is available before you are prepared, start with supervised practice."
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "title": "If You Do Only Three Things",
+      "subtitle": "Carry the same priorities through the immediate plan, longer-term work and review.",
+      "items": [
+        {
+          "type": "heading",
+          "text": "1. {{model.priorities.0.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Start",
+          "text": "{{model.priorities.0.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Completion test",
+          "text": "{{model.priorities.0.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Lead and support",
+          "text": "You, with {{model.priorities.0.support}}. Name the relevant person before beginning."
+        },
+        {
+          "type": "heading",
+          "text": "2. {{model.priorities.1.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Start",
+          "text": "{{model.priorities.1.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Completion test",
+          "text": "{{model.priorities.1.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Lead and support",
+          "text": "You, with {{model.priorities.1.support}}. Name the relevant person before beginning."
+        },
+        {
+          "type": "heading",
+          "text": "3. {{model.priorities.2.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Start",
+          "text": "{{model.priorities.2.action}}"
+        },
+        {
+          "type": "field",
+          "label": "Completion test",
+          "text": "{{model.priorities.2.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Lead and support",
+          "text": "You, with {{model.priorities.2.support}}. Name the relevant person before beginning."
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "title": "Your 30-Day and 90-Day Plan",
+      "subtitle": "Begin with clarification, then test understanding through proportionate practice.",
+      "items": [
+        {
+          "type": "kicker",
+          "text": "Days 1 to 30: establish the conditions"
+        },
+        {
+          "type": "field",
+          "label": "Week 1",
+          "text": "Choose a sponsor. Record mutual expectations and your preferred role, including the possibility of a role outside the family."
+        },
+        {
+          "type": "field",
+          "label": "Weeks 2 to 4",
+          "text": "For each priority below, agree one named lead, required access and a review date. Confirm relevant rights and decision limits before practising responsibility."
+        },
+        {
+          "type": "field",
+          "label": "{{model.priorities.0.label}}",
+          "text": "Arrange a first working session with {{model.priorities.0.support}}; identify the documents or practical example needed."
+        },
+        {
+          "type": "field",
+          "label": "{{model.priorities.1.label}}",
+          "text": "Arrange a first working session with {{model.priorities.1.support}}; identify the documents or practical example needed."
+        },
+        {
+          "type": "field",
+          "label": "{{model.priorities.2.label}}",
+          "text": "Arrange a first working session with {{model.priorities.2.support}}; identify the documents or practical example needed."
+        },
+        {
+          "type": "field",
+          "label": "Day 30 completion",
+          "text": "A sponsor and three action briefs are agreed. Missing access, authority or agreement is recorded with a responsible person and follow-up date."
+        },
+        {
+          "type": "kicker",
+          "text": "Days 31 to 90: practise and test"
+        },
+        {
+          "type": "field",
+          "label": "Working sequence",
+          "text": "Explain relevant structures and rights, confirm decision routes, then rehearse the crisis response where relevant. Run the other priority exercises with the agreed support."
+        },
+        {
+          "type": "field",
+          "label": "Bounded responsibility",
+          "text": "If willingness, access and authority are agreed, undertake a small supervised task. Specify scope, budget or other limits, escalation and feedback before it starts."
+        },
+        {
+          "type": "field",
+          "label": "Day 90 completion",
+          "text": "Review the outputs against page 13. Explain what you can now do, what remains uncertain and whether further delegation is justified."
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "title": "Your 12-Month Plan",
+      "subtitle": "Progress depends on demonstrated understanding and agreed authority as well as time.",
+      "items": [
+        {
+          "type": "heading",
+          "text": "Months 1 to 3: confirm and test"
+        },
+        {
+          "type": "field",
+          "label": "Work",
+          "text": "Complete the page 14 exercises and review all three priorities. Resolve relevance questions and identify gaps in information, authority or support."
+        },
+        {
+          "type": "field",
+          "label": "Support",
+          "text": "Sponsor and relevant authority holders."
+        },
+        {
+          "type": "field",
+          "label": "Completion",
+          "text": "Three priority records contain an output, your explanation, feedback and unresolved matters."
+        },
+        {
+          "type": "heading",
+          "text": "Months 4 to 6: build experience"
+        },
+        {
+          "type": "field",
+          "label": "Work",
+          "text": "Observe decisions or use redacted records and simulations. Apply learning from outside the family. Review financial information and prepare an adviser meeting independently."
+        },
+        {
+          "type": "field",
+          "label": "Support",
+          "text": "Chair, finance lead, adviser and independent mentor as relevant."
+        },
+        {
+          "type": "field",
+          "label": "Completion",
+          "text": "You can explain decisions and recommendations, identify risks and recognise when specialist advice is needed."
+        },
+        {
+          "type": "heading",
+          "text": "Months 7 to 9: exercise responsibility"
+        },
+        {
+          "type": "field",
+          "label": "Work",
+          "text": "If agreed conditions are met, deliver a bounded project with real consequences. Keep a decision log and record a setback or difficult trade-off."
+        },
+        {
+          "type": "field",
+          "label": "Support",
+          "text": "Project sponsor and actual authority holder."
+        },
+        {
+          "type": "field",
+          "label": "Completion",
+          "text": "Performance and independent feedback demonstrate judgement within the agreed limits."
+        },
+        {
+          "type": "heading",
+          "text": "Months 10 to 12: review and decide"
+        },
+        {
+          "type": "field",
+          "label": "Work",
+          "text": "Review the three priorities and project evidence. Repeat the questionnaire, then agree the next responsibility, more practice or a different role."
+        },
+        {
+          "type": "field",
+          "label": "Support",
+          "text": "You, sponsor and relevant family decision holder."
+        },
+        {
+          "type": "field",
+          "label": "Completion",
+          "text": "The next stage is justified by evidence and agreement; choosing another path remains legitimate."
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "title": "Questions for the Next Conversation",
+      "subtitle": "Prepare specific examples and separate your own choices from assumptions about the family.",
+      "items": [
+        {
+          "type": "paragraph",
+          "text": "1. What role would I choose, and what alternative would remain fulfilling?"
+        },
+        {
+          "type": "paragraph",
+          "text": "2. For each priority, is the gap knowledge, access, experience, mutual expectations or relevance to my chosen role?"
+        },
+        {
+          "type": "paragraph",
+          "text": "3. Who can provide the missing information, confirm my authority and sponsor practical experience?"
+        },
+        {
+          "type": "paragraph",
+          "text": "4. Which decisions may I make now, and which require consent or a formal office?"
+        },
+        {
+          "type": "paragraph",
+          "text": "5. What evidence would justify the next responsibility, and who should assess it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "6. If access or delegation is unavailable, what supervised alternative can we agree?"
+        },
+        {
+          "type": "kicker",
+          "text": "Method and limitations"
+        },
+        {
+          "type": "paragraph",
+          "text": "This is a self-assessment based on the answers supplied. Scores and interpretations require testing through authorised documents, conversations and practical exercises. Differences between answers indicate questions to investigate; they do not prove a cause, a disagreement or another person's intentions. A second family member may reasonably see the circumstances differently. The report is not legal, tax or regulated investment advice."
+        },
+        {
+          "type": "field",
+          "label": "Confidentiality",
+          "text": "Agree with whom the report and supporting records may be shared. Use authorised or redacted information and avoid recording unnecessary sensitive detail."
+        },
+        {
+          "type": "heading",
+          "text": "Taking these questions seriously is itself an assumption of responsibility."
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "title": "From Findings to Action",
+      "subtitle": "Use one action record for each priority, with a named person, deliverable and review.",
+      "items": [
+        {
+          "type": "heading",
+          "text": "1. {{model.priorities.0.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Deliverable",
+          "text": "{{model.priorities.0.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Support to confirm",
+          "text": "{{model.priorities.0.support}}"
+        },
+        {
+          "type": "field",
+          "label": "If blocked",
+          "text": "{{model.priorities.0.blocked}}"
+        },
+        {
+          "type": "field",
+          "label": "Review record",
+          "text": "Lead: __________  Start: __________  Review: __________"
+        },
+        {
+          "type": "heading",
+          "text": "2. {{model.priorities.1.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Deliverable",
+          "text": "{{model.priorities.1.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Support to confirm",
+          "text": "{{model.priorities.1.support}}"
+        },
+        {
+          "type": "field",
+          "label": "If blocked",
+          "text": "{{model.priorities.1.blocked}}"
+        },
+        {
+          "type": "field",
+          "label": "Review record",
+          "text": "Lead: __________  Start: __________  Review: __________"
+        },
+        {
+          "type": "heading",
+          "text": "3. {{model.priorities.2.label}}"
+        },
+        {
+          "type": "field",
+          "label": "Deliverable",
+          "text": "{{model.priorities.2.progress}}"
+        },
+        {
+          "type": "field",
+          "label": "Support to confirm",
+          "text": "{{model.priorities.2.support}}"
+        },
+        {
+          "type": "field",
+          "label": "If blocked",
+          "text": "{{model.priorities.2.blocked}}"
+        },
+        {
+          "type": "field",
+          "label": "Review record",
+          "text": "Lead: __________  Start: __________  Review: __________"
+        },
+        {
+          "type": "kicker",
+          "text": "Conditions for responsibility"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before delegation, agree willingness, scope, information access, decision limits, support and escalation. Record what you demonstrated and what still depends on another person. Keep the next responsibility proportionate to both your preparation and the family arrangements."
+        }
+      ]
+    }
+  ]
+}

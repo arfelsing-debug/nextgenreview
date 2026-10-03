@@ -3,4 +3,5 @@ async function request(path,options={}){const headers={"Content-Type":"applicati
 export async function redeem(token){const d=await request("/api/invitations/redeem",{method:"POST",body:JSON.stringify({token})});csrfToken=d.csrfToken;return d}
 export async function loadSession(){const d=await request("/api/session");csrfToken=d.csrfToken;return d}
 export function saveAnswers(answers){pendingSave=pendingSave.catch(()=>{}).then(()=>request("/api/responses",{method:"PUT",body:JSON.stringify({answers})}));return pendingSave}
-export async function complete(){return request("/api/complete",{method:"POST",body:"{}"})}
+export async function complete(){await pendingSave;return request("/api/complete",{method:"POST",body:"{}"})}
+

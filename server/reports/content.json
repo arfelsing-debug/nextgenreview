@@ -1,0 +1,510 @@
+{
+  "version": "2.0.0",
+  "language": "en",
+  "subdimensions": [
+    {
+      "id": "personal-direction",
+      "label": "Personal direction",
+      "questions": [
+        "NRR-Q01",
+        "NRR-Q02"
+      ],
+      "focus": [
+        "personal aims",
+        "recognising inherited expectations"
+      ],
+      "action": "Write one independent three-year objective and test a proposed family role against it.",
+      "progress": "Explain why the role supports your aims, or propose a credible alternative.",
+      "stretch": "Test a new opportunity against your aims and review the trade-off with an independent mentor.",
+      "support": "Independent mentor",
+      "blocked": "Begin privately with a written comparison if family discussion is difficult.",
+      "targeted": [
+        "Record your own three-year aims and identify one decision they would change. Review the aims with an independent mentor.",
+        "Compare an opportunity you want with one you feel expected to pursue. Explain the difference and practise discussing it with a trusted mentor."
+      ]
+    },
+    {
+      "id": "values",
+      "label": "Values",
+      "questions": [
+        "NRR-Q03",
+        "NRR-Q04"
+      ],
+      "focus": [
+        "understanding family values",
+        "choosing what to carry forward"
+      ],
+      "action": "Choose a real decision where two family values compete. Explain the trade-off and which value you would prioritise.",
+      "progress": "A reasoned decision connects values to consequences and acknowledges another view.",
+      "stretch": "Lead a discussion of a difficult value conflict and record the reasons for the agreed choice.",
+      "support": "Family sponsor",
+      "blocked": "Use a historical or hypothetical decision if current matters are confidential.",
+      "targeted": [
+        "Ask a senior family member for three decisions that illustrate family values. Explain the values in your own words.",
+        "Choose one inherited value to preserve and one to approach differently. Explain the consequences through a real or hypothetical decision."
+      ]
+    },
+    {
+      "id": "relationship-with-wealth",
+      "label": "Relationship with wealth",
+      "questions": [
+        "NRR-Q05",
+        "NRR-Q06"
+      ],
+      "focus": [
+        "reflecting on wealth and identity",
+        "discussing privilege and responsibility"
+      ],
+      "action": "Write what family wealth enables, what responsibilities it creates and which choices you want to make independently. Discuss one tension with a trusted mentor.",
+      "progress": "You can describe your own position without relying on the family's preferred account.",
+      "stretch": "Test your principles against a difficult spending, career or giving choice.",
+      "support": "Independent mentor",
+      "blocked": "Start with private reflection and choose a trusted person outside the family.",
+      "targeted": [
+        "Write how wealth affects your identity, work and freedom of choice. Identify one responsibility you accept and one boundary you want to discuss.",
+        "Discuss one privilege and one responsibility with a trusted mentor. Practise explaining them without making wealth the basis of your identity."
+      ]
+    },
+    {
+      "id": "personal-role",
+      "label": "Personal role",
+      "questions": [
+        "NRR-Q07",
+        "NRR-Q08"
+      ],
+      "focus": [
+        "choosing a possible family role",
+        "keeping alternatives open"
+      ],
+      "action": "Draft a role proposal covering contribution, time, authority and support. Include an alternative outside the family, then discuss a time-limited trial with a sponsor.",
+      "progress": "Desired roles and limits are explicit; a trial or next conversation is agreed.",
+      "stretch": "Compare your proposed role with a credible alternative and review its fit after a trial.",
+      "support": "Family sponsor",
+      "blocked": "If no role is available, agree a learning project without implying an obligation to join.",
+      "targeted": [
+        "Compare two possible family roles and an option outside the family. Write your preferred contribution, time commitment and support needs.",
+        "Describe a fulfilling alternative if the expected family role changes. Identify the skills and practical steps that would make it possible."
+      ]
+    },
+    {
+      "id": "history-context",
+      "label": "History & context",
+      "questions": [
+        "NRR-Q09",
+        "NRR-Q10"
+      ],
+      "focus": [
+        "knowing how wealth was created",
+        "understanding turning points"
+      ],
+      "action": "Interview a senior family member about one success, one failure and one turning point. Check the account against an available record and identify a lesson for today.",
+      "progress": "A short timeline separates established facts, different recollections and questions still open.",
+      "stretch": "Test an inherited lesson against a present challenge and explain where circumstances have changed.",
+      "support": "Senior family member",
+      "blocked": "Use authorised archives or another informed participant when direct access is unavailable.",
+      "targeted": [
+        "Ask an informed family member to explain how the principal business and wealth were created. Prepare and check a brief timeline.",
+        "Examine one success, failure and turning point with an informed participant. Record what each changed and a lesson still relevant today."
+      ]
+    },
+    {
+      "id": "business-understanding",
+      "label": "Business understanding",
+      "questions": [
+        "NRR-Q11",
+        "NRR-Q12"
+      ],
+      "focus": [
+        "understanding how the business earns money",
+        "recognising strategic risks"
+      ],
+      "action": "Ask an operating leader to explain customers, margins, cash needs and competitive pressures. Prepare a one-page account of the business model and two material risks.",
+      "progress": "An operating leader confirms your account and corrects any misunderstandings.",
+      "stretch": "Assess one strategic option, its assumptions and the evidence that could change your view.",
+      "support": "Operating leader or finance lead",
+      "blocked": "Use public accounts or an authorised anonymised case until internal access is agreed.",
+      "targeted": [
+        "Walk through customers, margins, cash requirements and competitive risks with an operating leader. Explain the business model back to them.",
+        "Discuss two major strategic risks or opportunities with an operating leader. Record the assumptions and what evidence could alter the assessment."
+      ]
+    },
+    {
+      "id": "people-institutions",
+      "label": "People & institutions",
+      "questions": [
+        "NRR-Q13",
+        "NRR-Q14"
+      ],
+      "focus": [
+        "knowing key people and their roles",
+        "locating knowledge and authority"
+      ],
+      "action": "Map key executives, advisers and stakeholders. For each, record their role, decision authority and knowledge held; identify one dependency on a single person.",
+      "progress": "Relevant officeholders confirm the map and one continuity dependency is addressed.",
+      "stretch": "Test the map against an actual decision or absence and update it where practice differs.",
+      "support": "Family office or governance lead",
+      "blocked": "Ask a sponsor for an authorised role directory and record missing access as an open question.",
+      "targeted": [
+        "Build an authorised directory of key executives, advisers and stakeholders, with their roles and reporting relationships.",
+        "Trace an actual decision through the people involved. Identify where knowledge and authority sit and any dependency on one person."
+      ]
+    },
+    {
+      "id": "wider-family-system",
+      "label": "Wider family system",
+      "questions": [
+        "NRR-Q15",
+        "NRR-Q16"
+      ],
+      "focus": [
+        "understanding branches and generations",
+        "anticipating effects on relationships"
+      ],
+      "action": "Discuss a possible ownership or leadership change with representatives of relevant branches. Record their stated interests separately from your assumptions.",
+      "progress": "A shared issue map identifies common aims, competing interests and matters requiring discussion.",
+      "stretch": "Facilitate a discussion of a real trade-off without claiming to represent another branch.",
+      "support": "Family sponsor or facilitator",
+      "blocked": "If direct discussion is sensitive, use a neutral facilitator and avoid attributing motives.",
+      "targeted": [
+        "Listen to representatives of relevant branches describe their interests and concerns. Separate their own statements from your assumptions.",
+        "Consider a possible leadership or ownership change. Map who could be affected and discuss the anticipated effects without attributing motives."
+      ]
+    },
+    {
+      "id": "ownership-literacy",
+      "label": "Ownership literacy",
+      "questions": [
+        "NRR-Q17",
+        "NRR-Q18"
+      ],
+      "focus": [
+        "knowing assets and holdings",
+        "distinguishing legal and operational roles"
+      ],
+      "action": "Prepare an authorised entity map. For each relevant interest, separate ownership, benefit, management and fiduciary roles; ask counsel to confirm how they differ.",
+      "progress": "You can explain the main roles, information rights and matters requiring specialist confirmation.",
+      "stretch": "Trace a real decision through the relevant entities and explain who may exercise each right.",
+      "support": "Relevant legal counsel",
+      "blocked": "Request a redacted map or authorised explanation and list documents still needed.",
+      "targeted": [
+        "Prepare an authorised one-page map of assets and holdings. Ask a qualified person to confirm the main interests and information flows.",
+        "With counsel, compare the roles of owner, beneficiary, director, executive and trustee in a relevant example. Confirm which rights belong to each."
+      ]
+    },
+    {
+      "id": "financial-literacy",
+      "label": "Financial literacy",
+      "questions": [
+        "NRR-Q19",
+        "NRR-Q20"
+      ],
+      "focus": [
+        "reading financial information",
+        "understanding risk and liquidity"
+      ],
+      "action": "Review an actual financial pack with the finance lead. Explain profit, cash and distributable funds, then identify a liquidity or concentration risk and prepare three questions.",
+      "progress": "You can explain the figures and one risk in your own words, with corrections recorded.",
+      "stretch": "Prepare a brief comparing two financial choices and test the assumptions with the finance lead.",
+      "support": "Finance lead or qualified financial specialist",
+      "blocked": "Use an anonymised pack or public accounts until access to internal figures is agreed.",
+      "targeted": [
+        "Review a real or anonymised financial pack with a qualified person. Explain profit, cash and distributable funds and prepare three questions.",
+        "Compare two hypothetical asset choices for risk, return, liquidity and concentration. Explain the trade-off and ask a qualified person to challenge it."
+      ]
+    },
+    {
+      "id": "structures",
+      "label": "Structures",
+      "questions": [
+        "NRR-Q21",
+        "NRR-Q22"
+      ],
+      "focus": [
+        "understanding the purpose of entities",
+        "understanding rights and restrictions"
+      ],
+      "action": "Review relevant structures with qualified counsel. Record each purpose, your actual or possible rights, restrictions and who can exercise authority; mark anything unconfirmed.",
+      "progress": "Counsel confirms the summary and you can explain what the structure permits and limits.",
+      "stretch": "Test the summary against a proposed distribution, transfer or change of control.",
+      "support": "Relevant legal counsel; tax specialist where needed",
+      "blocked": "Request an authorised explanation or redacted extract rather than assume rights from a diagram.",
+      "targeted": [
+        "Ask counsel to explain why each relevant structure exists. Prepare a short purpose statement and identify who exercises authority.",
+        "Review your actual or possible rights, restrictions and responsibilities with counsel. Mark every right that remains unconfirmed."
+      ]
+    },
+    {
+      "id": "wealth-responsibility",
+      "label": "Wealth responsibility",
+      "questions": [
+        "NRR-Q23",
+        "NRR-Q24"
+      ],
+      "focus": [
+        "forming capital principles",
+        "questioning recommendations"
+      ],
+      "action": "Write principles for spending, investing, giving and preserving capital. Apply them to one proposal and question its downside, liquidity, fees and effect on other people.",
+      "progress": "Your decision note states reasons, unanswered questions and the expertise needed.",
+      "stretch": "Defend a proposed exception to your principles and record the circumstances justifying it.",
+      "support": "Qualified adviser or independent mentor",
+      "blocked": "Use a hypothetical proposal and practise the questions before a real meeting.",
+      "targeted": [
+        "Write principles for spending, investing, giving and preserving capital. Test them against a proposal and explain a possible exception.",
+        "Practise questioning a proposal's assumptions, downside, liquidity and incentives with a trusted sponsor before a real adviser meeting."
+      ]
+    },
+    {
+      "id": "decision-map",
+      "label": "Decision map",
+      "questions": [
+        "NRR-Q25",
+        "NRR-Q26"
+      ],
+      "focus": [
+        "understanding decision processes",
+        "identifying who has authority"
+      ],
+      "action": "Select three decisions: a dividend, a senior appointment and an asset sale. Identify who proposes, approves, implements and is consulted; confirm with relevant officeholders.",
+      "progress": "A confirmed decision-rights map records consent requirements and unresolved boundaries.",
+      "stretch": "Test the map against an actual decision and resolve any difference between documents and practice.",
+      "support": "Relevant officeholders and governance adviser",
+      "blocked": "Walk through an authorised decision record if access to the formal forum is unavailable.",
+      "targeted": [
+        "Walk through a recent significant decision with a sponsor. Record the proposal, evidence, approval, implementation and follow-up.",
+        "Map three decisions to the actual authority holders. Confirm consultation, consent and escalation requirements with relevant officeholders."
+      ]
+    },
+    {
+      "id": "voice-challenge",
+      "label": "Voice & challenge",
+      "questions": [
+        "NRR-Q27",
+        "NRR-Q28"
+      ],
+      "focus": [
+        "expressing disagreement respectfully",
+        "asking questions without fear"
+      ],
+      "action": "Prepare one difficult question with supporting facts and an alternative. Agree the appropriate forum with a sponsor, raise it and debrief how the discussion was handled.",
+      "progress": "You can raise uncertainty and disagreement constructively within the agreed process.",
+      "stretch": "Lead a substantive challenge while acknowledging evidence that could change your own view.",
+      "support": "Trusted sponsor or neutral facilitator",
+      "blocked": "Practise privately first; seek a neutral facilitator if the setting discourages questions.",
+      "targeted": [
+        "Prepare a respectful disagreement using facts and an alternative. Practise privately, then agree a suitable forum in which to raise it.",
+        "Agree with a trusted sponsor how to raise uncertainty safely. Ask one substantive question and debrief how the response was handled."
+      ]
+    },
+    {
+      "id": "collective-decisions",
+      "label": "Collective decisions",
+      "questions": [
+        "NRR-Q29",
+        "NRR-Q30"
+      ],
+      "focus": [
+        "separating relationships from duties",
+        "handling competing interests"
+      ],
+      "action": "Take part in a bounded decision involving different interests. State your role, identify conflicts, compare options and record how the decision and dissent were handled.",
+      "progress": "The record explains the trade-off, decision process and any conflict or unresolved concern.",
+      "stretch": "Chair a small decision process with clear authority, competing views and recorded reasons.",
+      "support": "Project sponsor or governance lead",
+      "blocked": "Use a supervised simulation before taking responsibility for an actual decision.",
+      "targeted": [
+        "Use a real or simulated decision to separate personal relationships, formal duties and conflicts of interest. Explain whose interests your role requires you to consider.",
+        "Join a supervised decision involving competing interests. Compare options, record the trade-off and seek feedback on how disagreement was handled."
+      ]
+    },
+    {
+      "id": "governance-practice",
+      "label": "Governance practice",
+      "questions": [
+        "NRR-Q31",
+        "NRR-Q32"
+      ],
+      "focus": [
+        "understanding governance bodies",
+        "experiencing formal meetings"
+      ],
+      "action": "Observe two authorised meetings. Record how the agenda, evidence, challenge, decision and follow-up work, then debrief with the chair or sponsor.",
+      "progress": "You can explain how a decision was reached and identify one improvement to follow-up.",
+      "stretch": "Prepare and present one agenda item within agreed authority, then seek feedback.",
+      "support": "Chair or governance sponsor",
+      "blocked": "Use two redacted decision records and a chaired simulation if observation is unavailable.",
+      "targeted": [
+        "Ask a chair to explain a governance body's purpose, authority and accountability. Check its stated role against an authorised decision record.",
+        "Observe two authorised meetings and debrief how decisions were reached. If access is unavailable, use redacted records and a chaired simulation."
+      ]
+    },
+    {
+      "id": "independent-experience",
+      "label": "Independent experience",
+      "questions": [
+        "NRR-Q33",
+        "NRR-Q34"
+      ],
+      "focus": [
+        "building experience outside the family",
+        "receiving independent assessment"
+      ],
+      "action": "Complete a meaningful assignment where success is defined in advance and assessed independently of family relationships. Request candid written feedback.",
+      "progress": "An external assessor identifies demonstrated strengths and an improvement to make.",
+      "stretch": "Apply one practice learnt outside the family to a bounded family project and compare results.",
+      "support": "External manager or independent assessor",
+      "blocked": "Choose an external voluntary or project role with a genuine independent assessor.",
+      "targeted": [
+        "Arrange a meaningful external assignment with agreed objectives and responsibilities. Identify a practice that could later inform family work.",
+        "Request assessment against written criteria from someone independent of family relationships. Record a strength, a weakness and an improvement to make."
+      ]
+    },
+    {
+      "id": "leadership-resilience",
+      "label": "Leadership & resilience",
+      "questions": [
+        "NRR-Q35",
+        "NRR-Q36"
+      ],
+      "focus": [
+        "making decisions with consequences",
+        "learning from setbacks"
+      ],
+      "action": "Lead a limited project with agreed budget, decision limits and a review date. Keep a decision log and examine one setback with a sponsor.",
+      "progress": "Delivery and feedback show what worked, what failed and what you would change.",
+      "stretch": "Lead a more demanding project and invite independent criticism of your judgement.",
+      "support": "Project sponsor or external manager",
+      "blocked": "Start with a supervised assignment whose consequences and authority are proportionate.",
+      "targeted": [
+        "Lead a supervised project with real consequences, written decision limits and a review date. Keep a record of significant decisions.",
+        "Examine a setback or a challenging simulation with an independent assessor. Explain your response, what you learnt and what you would change."
+      ]
+    },
+    {
+      "id": "professional-development",
+      "label": "Professional development",
+      "questions": [
+        "NRR-Q37",
+        "NRR-Q38"
+      ],
+      "focus": [
+        "developing relevant skills",
+        "obtaining objective feedback"
+      ],
+      "action": "Agree two skills required for a possible role. Set a practical exercise, an independent assessor and a review date for each, then apply the feedback.",
+      "progress": "You can demonstrate each skill in practice and explain how feedback changed your approach.",
+      "stretch": "Have an assessor test your skills on an unfamiliar task with real constraints.",
+      "support": "Independent mentor or assessor",
+      "blocked": "Use an external assessor if family feedback is unavailable or overly reassuring.",
+      "targeted": [
+        "Identify two skills required for your possible role. Agree practical exercises, an assessor and dates by which progress can be demonstrated.",
+        "Choose an assessor who can challenge you independently. Ask for specific examples and apply one improvement before the next review."
+      ]
+    },
+    {
+      "id": "adviser-literacy",
+      "label": "Adviser literacy",
+      "questions": [
+        "NRR-Q39",
+        "NRR-Q40"
+      ],
+      "focus": [
+        "recognising limits of personal expertise",
+        "selecting and questioning advisers"
+      ],
+      "action": "Prepare an adviser meeting around the objective, options, assumptions, fees and incentives. Afterwards, explain the recommendation, one alternative and when another specialist is needed.",
+      "progress": "You can assess the advice and explain selection criteria; appointment powers are confirmed separately.",
+      "stretch": "Compare two adviser proposals and justify a recommendation within your actual authority.",
+      "support": "Relevant adviser and authorised appointment holder",
+      "blocked": "Compare anonymised proposals; practise evaluation without implying power to appoint or dismiss.",
+      "targeted": [
+        "Take a sample decision and identify what expertise you lack, which specialist is needed and the questions you would ask.",
+        "Compare two adviser proposals for competence, fees, incentives and scope. Explain your recommendation and confirm who actually has appointment powers."
+      ]
+    },
+    {
+      "id": "expectations",
+      "label": "Expectations",
+      "questions": [
+        "NRR-Q41",
+        "NRR-Q42"
+      ],
+      "focus": [
+        "knowing the current generation's expectations",
+        "having your own aims understood"
+      ],
+      "action": "You and the current generation separately record desired roles, timing and limits. Compare the accounts with a sponsor and record agreements and differences.",
+      "progress": "Mutual expectations are explicit; open differences have an owner and a further discussion date.",
+      "stretch": "Review agreed expectations after experience in the role and renegotiate assumptions that no longer fit.",
+      "support": "Current generation and family sponsor",
+      "blocked": "Prepare your own account and request a facilitated discussion if a direct exchange is difficult.",
+      "targeted": [
+        "Ask the current generation to record expected roles, timing and limits over five to ten years. Compare these with your own understanding.",
+        "Prepare your own desired role and limits. Ask the current generation to explain what they understand, then record agreements and open differences."
+      ]
+    },
+    {
+      "id": "preparation-path",
+      "label": "Preparation path",
+      "questions": [
+        "NRR-Q43",
+        "NRR-Q44"
+      ],
+      "focus": [
+        "having a gradual transfer process",
+        "having opportunities to practise"
+      ],
+      "action": "Agree one staged responsibility with a sponsor. Specify information access, decision limits, support, success criteria and a review before any wider delegation.",
+      "progress": "A role brief and completed supervised exercise show whether the next stage is justified.",
+      "stretch": "Test a wider delegation after feedback, with revised limits and an escalation route.",
+      "support": "Current authority holder and project sponsor",
+      "blocked": "If delegation is unavailable, agree observation or a supervised exercise and record the barrier.",
+      "targeted": [
+        "Ask the authority holder to agree a staged role, access, supervision and review points. Record any barrier to a gradual transfer.",
+        "Agree a small supervised decision before accepting wider responsibility. Define the limits, escalation route and feedback that would justify a next stage."
+      ]
+    },
+    {
+      "id": "crisis-readiness",
+      "label": "Crisis readiness",
+      "questions": [
+        "NRR-Q45",
+        "NRR-Q46"
+      ],
+      "focus": [
+        "knowing duties after incapacity",
+        "knowing immediate contacts and responsibilities"
+      ],
+      "action": "Walk through an unexpected absence. Confirm contacts, document locations, access and your actual powers for the first 48 hours; record every dependency on one person.",
+      "progress": "A response sheet is rehearsed, authority is confirmed and gaps have named owners.",
+      "stretch": "Rehearse a different scenario, including a contact being unavailable, and update the response sheet.",
+      "support": "Family office, trustee or relevant officeholder",
+      "blocked": "Start with contact verification and an authorised walkthrough; avoid taking powers for granted.",
+      "targeted": [
+        "Walk through a senior family member's unexpected incapacity with the relevant officeholder. Confirm your duties and actual powers before discussing actions.",
+        "Verify emergency contacts, document locations and permitted access. Rehearse the first 48 hours, including a contact who is unavailable."
+      ]
+    },
+    {
+      "id": "stewardship-agency",
+      "label": "Stewardship & agency",
+      "questions": [
+        "NRR-Q47",
+        "NRR-Q48"
+      ],
+      "focus": [
+        "forming intentions for future influence",
+        "acting with an independent identity"
+      ],
+      "action": "Write what you would preserve, change and create. Test one proposed change against family purpose, affected people and the authority you would need.",
+      "progress": "A reasoned stewardship proposal acknowledges consequences and leaves room for your own approach.",
+      "stretch": "Sponsor a bounded improvement and test whether its results support your original intention.",
+      "support": "Family sponsor or independent mentor",
+      "blocked": "Develop a proposal or learning project while awaiting authority to act.",
+      "targeted": [
+        "Write what you would preserve, change and create. Test one proposed change against purpose, affected people and the authority needed.",
+        "Describe how you would fulfil a responsibility in your own way while respecting agreed duties. Discuss a practical example with an independent mentor."
+      ]
+    }
+  ]
+}
