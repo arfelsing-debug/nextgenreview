@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import './letter-summary.js';
 import {analyse,localise,translator,contract,validateAnswers} from './model.js';
 const release=JSON.parse(fs.readFileSync(new URL('./pages.json',import.meta.url),'utf8'));
 if(release.version!==contract.content_version)throw Error('page_template_version_mismatch');
@@ -13,12 +14,13 @@ export function buildReport(answers,language,{now=new Date()}={}){
  const fill=s=>decode(s).replace(/\{\{([^}]+)\}\}/g,(_,p)=>p.toLowerCase().split('.').reduce((v,k)=>v?.[k],vars)??'');
  const translate=s=>{
   if(s.startsWith('Prepared for '))return ({en:'Prepared for '+words.participant+' | Generated ',cs:'Připraveno pro '+words.participant+' | Vytvořeno ',de:'Erstellt für '+words.participant+' | Erstellt am '}[language])+date;
-  if(s.startsWith('Your reported strengths include '))return model.strengths.length?words.strength+model.strengths.map(v=>tr(v.label)).join(', ')+'.':tr('Your responses identify areas to clarify before a development agenda is agreed.');
+  if(s.startsWith('Your reported strengths include '))return globalThis.AdamasLetterSummary.summary('nextgen',localise(model,language),language);
   if(s.startsWith('The principal priorities are '))return words.prior+model.priorities.map(v=>tr(v.label)).join(', ')+words.suffix;
   return tr(s);
  };
  const pages=templates.map(template=>{
   let items=template.items.filter(item=>{
+   if(template.number===1&&item.text.startsWith('The principal priorities are '))return false;
    if(template.number===12&&item.label==='Further signals')return false;
    if(template.number===1&&item.text.startsWith('Your reported strengths include '))return true;
    const refs=JSON.stringify(item).matchAll(/\{\{model\.(strengths|signals)\.(\d+)\./g);
@@ -46,5 +48,5 @@ export function buildReport(answers,language,{now=new Date()}={}){
  pages[3].dimensions=local.dims.map(dimension);pages[3].points=local.subs.map(s=>({label:s.label,level:s.level,status:s.status}));
  for(let i=6;i<=11;i++){pages[i].scores=local.subs.slice((i-6)*4,(i-5)*4).map(s=>({label:s.label,status:s.status,level:s.level}));pages[i].items[0]={type:'score',text:local.dims[i-6].visibility,status:local.dims[i-6].status,level:local.dims[i-6].level};}
  for(const [n,rows] of [[4,local.strengths],[5,local.priorities]])pages[n].scores=rows.map((s,i)=>({label:(i+1)+'. '+s.label,status:s.status,level:s.level}));
- return {contentVersion:contract.content_version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages};
+ return {contentVersion:contract.content_version,letterSummaryVersion:globalThis.AdamasLetterSummary.version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages};
 }
