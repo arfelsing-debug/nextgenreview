@@ -1,3 +1,4 @@
+import './report-standard.js';
 import fs from 'node:fs';
 import './letter-summary.js';
 import {analyse,localise,translator,contract,validateAnswers} from './model.js';
@@ -48,5 +49,6 @@ export function buildReport(answers,language,{now=new Date()}={}){
  pages[3].dimensions=local.dims.map(dimension);pages[3].points=local.subs.map(s=>({label:s.label,level:s.level,status:s.status}));
  for(let i=6;i<=11;i++){pages[i].scores=local.subs.slice((i-6)*4,(i-5)*4).map(s=>({label:s.label,status:s.status,level:s.level}));pages[i].items[0]={type:'score',text:local.dims[i-6].visibility,status:local.dims[i-6].status,level:local.dims[i-6].level};}
  for(const [n,rows] of [[4,local.strengths],[5,local.priorities]])pages[n].scores=rows.map((s,i)=>({label:(i+1)+'. '+s.label,status:s.status,level:s.level}));
- return {contentVersion:contract.content_version,letterSummaryVersion:globalThis.AdamasLetterSummary.version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages};
+ return globalThis.AdamasReportStandard.apply({contentVersion:contract.content_version,letterSummaryVersion:globalThis.AdamasLetterSummary.version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages});
 }
+

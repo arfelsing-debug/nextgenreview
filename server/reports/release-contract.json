@@ -26,5 +26,20 @@
     "Extend automated answer-combination and 18-page checks to the new language.",
     "Render and inspect every final page for text overlap, clipping and readable typography.",
     "Extend the browser controls and UI messages; run server tests and browser language/download checks before release."
-  ]
+  ],
+  "reportStandard": {
+    "version": "1.0.0",
+    "document": "REPORT_STANDARD.md",
+    "scope": "All current and future Adamas reports; online and PDF; English, Czech and German",
+    "openingLetter": "Expanded respondent-specific second substantive paragraph; signed letter remains one page",
+    "depth": "Explain findings, implications, uncertainty, actions, support, completion evidence and blocked alternatives",
+    "pagination": "Exactly one cover and 17 numbered pages",
+    "typography": "Preserve approved readable typography; resolve overflow through editing and layout",
+    "releaseChecks": [
+      "Strong, developing, weak, unknown, inapplicable and mixed answers in every language",
+      "PDF page count, font size and overflow checks",
+      "Visual inspection of every final PDF page and the online report",
+      "Online/PDF findings and priorities agree; verify deployment separately"
+    ]
+  }
 }
