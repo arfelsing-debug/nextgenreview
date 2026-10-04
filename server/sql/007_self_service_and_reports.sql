@@ -1,6 +1,14 @@
 ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS email text;
 ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS full_name text;
 ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS access_ip_hash text;
+ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS geo_country_code text;
+ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS geo_country_name text;
+ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS geo_region text;
+ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS geo_region_code text;
+ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS geo_city text;
+ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS geo_provider text;
+ALTER TABLE nrr_invitations ADD COLUMN IF NOT EXISTS geo_captured_at timestamptz;
+
 ALTER TABLE nrr_sessions ADD COLUMN IF NOT EXISTS ip_hash text;
 
 CREATE TABLE IF NOT EXISTS nrr_reports (
@@ -16,5 +24,13 @@ CREATE TABLE IF NOT EXISTS nrr_reports (
  report_version text NOT NULL,
  generated_at timestamptz NOT NULL DEFAULT now()
 );
+
+ALTER TABLE nrr_reports ADD COLUMN IF NOT EXISTS geo_country_code text;
+ALTER TABLE nrr_reports ADD COLUMN IF NOT EXISTS geo_country_name text;
+ALTER TABLE nrr_reports ADD COLUMN IF NOT EXISTS geo_region text;
+ALTER TABLE nrr_reports ADD COLUMN IF NOT EXISTS geo_region_code text;
+ALTER TABLE nrr_reports ADD COLUMN IF NOT EXISTS geo_city text;
+ALTER TABLE nrr_reports ADD COLUMN IF NOT EXISTS geo_provider text;
+ALTER TABLE nrr_reports ADD COLUMN IF NOT EXISTS geo_captured_at timestamptz;
 CREATE INDEX IF NOT EXISTS nrr_reports_email_idx ON nrr_reports(lower(email));
 CREATE INDEX IF NOT EXISTS nrr_reports_generated_idx ON nrr_reports(generated_at DESC);
