@@ -1,0 +1,3 @@
+# Adamas reports
+
+For work on any current or future review, read REPORT_STANDARD.md before changing report content, templates, online presentation or PDF rendering. It applies to all reviews and all three languages. Preserve one cover and 17 numbered pages, the complete single-page signed letter, the shared diagnostic model and approved readable typography. Fuller interpretation and practical guidance are a release requirement. Run the report model, route, language and PDF checks appropriate to the change and inspect the final rendered pages. Report source, specimen and live-deployment status separately.
