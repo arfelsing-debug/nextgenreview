@@ -1,4 +1,3 @@
 .live-report-page footer small{display:block;margin-top:4px;font-size:8px;letter-spacing:.03em;opacity:.78;text-transform:none}
-.acr::after{content:'NextGen Readiness Review™ is a trademark of Adamas Advisors · © 2026 Adamas Advisors';display:block;max-width:1180px;margin:20px auto 0;padding:0 28px 18px;color:#66736d;font-size:10px;line-height:1.4;letter-spacing:.02em;text-align:center;opacity:.75}
-html[lang='cs-CZ'] .acr::after{content:'NextGen Readiness Review™ je ochranná známka společnosti Adamas Advisors · © 2026 Adamas Advisors'}
-html[lang='de-DE'] .acr::after{content:'NextGen Readiness Review™ ist eine Marke von Adamas Advisors · © 2026 Adamas Advisors'}
+.review-tm{font-size:33%!important;line-height:0;vertical-align:super;letter-spacing:0}
+.review-trademark-notice{display:block;max-width:1180px;margin:20px auto 0;padding:0 28px 18px;color:#66736d;font-size:10px;line-height:1.4;letter-spacing:.02em;text-align:center;opacity:.75}
