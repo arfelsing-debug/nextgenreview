@@ -1,9 +1,10 @@
+import {expandReadinessPortrait} from './portrait-expansion.js';
 /**
- * Adamas evidence-led interpretation, version 1.1.0.
+ * Adamas evidence-led interpretation, version 1.2.0.
  * Pure, deterministic. Operates on the Review's EXISTING scored model.
  * Does not modify scores, priorities, original reports, or the Compass.
  */
-export const interpretationVersion='1.1.0';
+export const interpretationVersion='1.2.0';
 const names={
  family:{en:'Family Continuity',cs:'kontinuity rodiny',de:'Familienkontinuität'},
  adviser:{en:'Adviser Coordination',cs:'koordinace poradců',de:'Beraterkoordination'},
@@ -193,13 +194,15 @@ export function interpretReadiness(input){
  const d=cond.flatMap((s,i)=>[head(scenarioNames[i]),para(s+' '+scenarioDetails[review][lang][i]),field(c.trace,refs[i]||pairRefs)]);
  d.push(para(c.scenariosCaution));
  const actionItems=r=>[head(labelled(r)),para(f(c.priority,{num:priorities.indexOf(r)+1,name:labelled(r)})),field(c.verify,r.action||r.firstAction||c.evidence),field(c.completion,r.progress||r.completionEvidence||r.responseProgress||c.evidence),field(c.trace,reference(r)),field(c.lead,c.follow)];
+ const expanded=expandReadinessPortrait({review,language:lang,counts,dimensions,pairs,priorities,original:a.map(item=>item.text)});
  const out=[
-  page(c.portrait,a),
+  page(c.portrait,expanded.first),
+  {...page(expanded.second.title,expanded.second.items),portraitContinuation:true},
   page(c.dependencies,b),
   page(c.scenarios,d),
   page(c.action,priorities.slice(0,2).flatMap(actionItems)),
   page(c.continued,[...actionItems(priorities[2]),para(c.caveat)])
  ];
- return {version:interpretationVersion,review,language:lang,counts,
+ return {version:interpretationVersion,portraitVersion:expanded.version,portraitWordCount:expanded.wordCount,review,language:lang,counts,
   priorityIds:priorities.map((x,i)=>x.id??x.index??(reference(x)||String(i))),pages:out};
 }
