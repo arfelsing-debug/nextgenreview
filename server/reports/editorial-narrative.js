@@ -149,6 +149,27 @@ export function crossProfileSimilarity(reportA,reportB){
  return {pages:byPage,maxOverlap:Math.max(...byPage.map(p=>p.overlap)),
   warnsStockProse:byPage.some(p=>p.overlap>.50)};
 }
+/**
+ * The composer uses stable internal evidence IDs. For readers, resolve them to
+ * named dimensions/subdimensions and the original question numbers.
+ */
+export function formatEditorialEvidence(ids,brief){
+ if(!Array.isArray(ids)||!brief?.pairs||!brief?.dimensions)throw Error('invalid_evidence_references');
+ const formatRange=refs=>{
+  if(!Array.isArray(refs)||!refs.length)throw Error('evidence_questions_missing');
+  const first=String(refs[0]),last=String(refs.at(-1));
+  const a=first.match(/^(.*?)(\d+)$/),b=last.match(/^(.*?)(\d+)$/);
+  return a&&b&&a[1]===b[1]&&refs.length>1?a[1]+a[2]+'–'+b[2]:first;
+ };
+ return ids.map(id=>{
+  const pair=brief.pairs.find(x=>x.evidence_id===id);
+  if(pair)return pair.name+' ('+formatRange(pair.question_refs)+')';
+  const dim=brief.dimensions.find(x=>x.evidence_id===id);
+  if(!dim)throw Error('unknown_evidence_reference');
+  const refs=brief.pairs.filter(x=>x.dimension_id===id).flatMap(x=>x.question_refs||[]);
+  return dim.name+' ('+formatRange(refs)+')';
+ }).join('; ');
+}
 export function applyEditorialDraft(report,draft,brief,{model='fictional-draft'}={}){
  if(report?.specimen!==true||report.language!==brief?.language||!domains[brief?.review])throw Error('fictional_only_editorial_overlay');
  validateEditorialDraft(draft,brief);
@@ -157,9 +178,9 @@ export function applyEditorialDraft(report,draft,brief,{model='fictional-draft'}
  const revised={...report,pages:report.pages.map((p,i)=>{
   if(!NARRATIVE_PAGE_NUMBERS.includes(i))return p;
   const key=pageNames[i-13],section=draft[key];
-  const label={en:'Answer evidence',cs:'Podkladové odpovědi',de:'Belege aus den Antworten'}[report.language];
+  const label={en:'Supporting questions',cs:'Podkladové otázky',de:'Zugrunde liegende Fragen'}[report.language];
   return {...p,items:[...section.paragraphs.map(text=>({type:'paragraph',text})),
-   {type:'field',label,text:section.evidence_ids.join(', ')}],
+   {type:'field',label,text:formatEditorialEvidence(section.evidence_ids,brief)}],
    authoredBy:'editorial-composer-v0.1'};
  })};
  revised.editorial={version:EDITORIAL_COMPOSER_VERSION,source:'fictional-specimen-only',
