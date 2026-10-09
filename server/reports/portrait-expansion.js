@@ -1,3 +1,4 @@
+import {editorialRead} from './editorial-logic.js';
 /**
  * Adamas Readiness Portrait expansion v2.0
  *
@@ -95,37 +96,24 @@ const wordCount=s=>s.trim().split(/\s+/).filter(Boolean).length;
  * Returns two portrait pages; no new score is created.
  */
 export function expandReadinessPortrait({review,language,counts,dimensions,pairs,priorities,original}){
- const c=copy[language],sc= scenario[review]?.[language];
- if(!c||!sc||!Array.isArray(dimensions)||dimensions.length!==6||!Array.isArray(pairs)||pairs.length!==24||!Array.isArray(priorities)||priorities.length!==3||!Array.isArray(original)||original.length<3)throw Error('invalid_portrait_expansion');
- const dimensionRank=dimensions.filter(scored).sort((a,b)=>b.mean-a.mean),top=dimensionRank[0],low=dimensionRank.at(-1),next=dimensionRank[1]||top;
- const ranked=pairs.filter(scored).sort((a,b)=>b.mean-a.mean),best=ranked[0],weak=ranked.at(-1);
- const blank=(language==='en'?'areas requiring clarification':language==='cs'?'oblastmi k vyjasnění':'klärungsbedürftigen Bereichen');
- const d={
-  top:label(top)||blank,low:label(low)||blank,next:label(next)||blank,nextStatus:status(next,c),
-  bestPair:label(best)||blank,weakPair:label(weak)||blank,bestRef:trace(best)||'unscored',weakRef:trace(weak)||'unscored',
-  first:label(top)||blank,second:label(low)||blank,refs:[trace(top),trace(low)].filter(Boolean).join('; ')||[trace(best),trace(weak)].filter(Boolean).join('; ')||'insufficient',
-  domain:label(top)||blank,focus:label(low)||blank,risk:label(dimensions[2])||blank,priority:label(priorities[0])||blank,
-  scenario:sc[0],stress:sc[1]
- };
- const full=!!best&&!!weak&&!!top&&!!low;
- const first=[
-  original[0],...(full?[replace(c.overview,d)]:[]),original[1],
-  ...(full?[replace(c.secondStrength,d)]:[]),original[2],
-  c.perspective,
-  original[3]||c.limited
+ const c=copy[language];
+ if(!c||dimensions?.length!==6||pairs?.length!==24||priorities?.length!==3||!Array.isArray(original)||original.length<3)throw Error('invalid_portrait_expansion');
+ const editorial=editorialRead({review,language,counts,dimensions,pairs,priorities});
+ const ranked=dimensions.filter(scored).sort((a,b)=>b.mean-a.mean),firstDimension=ranked[0],next=ranked[1];
+ const hasIndependentSecond=firstDimension&&next&&Math.abs(firstDimension.mean-next.mean)>=0.5;
+ const substitutions={top:label(firstDimension),next:label(next),nextStatus:status(next,c)};
+ // The Portrait explains the respondent's pattern and perspective. It does not
+ // prescribe scenarios, repetitions of safeguards, or a second action plan.
+ const first=[original[0],editorial.portraitPattern,original[1],original[2],original[3]].filter(Boolean);
+ const second=[editorial.domain,editorial.portraitDeep,editorial.portraitPerspective,
+  !editorial.visibility&&hasIndependentSecond?replace(c.secondStrength,substitutions):null
  ].filter(Boolean);
- const substantialContrast=full&&best.mean-weak.mean>=1.5&&best!==weak;
- const second=[
-  substantialContrast?replace(c.different,d):c.noDifferent,
-  replace(c.ordinary,d),replace(c.transition,d),replace(c.pressure,d),
-  replace(c.close,d),
-  ...((counts?.unknown||0)+(counts?.na||0)>=8?[c.limited]:[])
- ];
  return {
   version:PORTRAIT_VERSION,
-  first: first.map(text=>({type:'paragraph',text})),
+  first:first.map(text=>({type:'paragraph',text})),
   second:{title:c.second,items:second.map(text=>({type:'paragraph',text})),interpretive:true,portraitContinuation:true},
   wordCount:wordCount([...first,...second].join(' ')),
+  editorialPattern:editorial.pattern,
   sourceCoverage:counts?.scored??null
  };
 }
