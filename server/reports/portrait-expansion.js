@@ -87,7 +87,7 @@ const status=(r,locale)=>{
  if(raw==='green')raw='established';if(raw==='amber')raw='developing';if(raw==='red')raw='exposed';if(raw==='grey')raw='unclear';
  return locale.condition[raw]||locale.condition.unclear;
 };
-const scored=r=>Number.isFinite(r?.mean)&&!['unclear','grey'].includes(r?.status);
+const scored=r=>Number.isFinite(r?.mean??r?.average)&&!['unclear','grey'].includes(String(r?.status||'').toLowerCase());
 const label=x=>String(x?.name||x?.label||x?.title||'').trim();
 const trace=x=>String(x?.trace||(Array.isArray(x?.questions)?x.questions.join(', '):'')).trim();
 const wordCount=s=>s.trim().split(/\s+/).filter(Boolean).length;
@@ -99,7 +99,7 @@ export function expandReadinessPortrait({review,language,counts,dimensions,pairs
  const c=copy[language];
  if(!c||dimensions?.length!==6||pairs?.length!==24||priorities?.length!==3||!Array.isArray(original)||original.length<3)throw Error('invalid_portrait_expansion');
  const editorial=editorialRead({review,language,counts,dimensions,pairs,priorities});
- const ranked=dimensions.filter(scored).sort((a,b)=>b.mean-a.mean),firstDimension=ranked[0],next=ranked[1];
+ const ranked=dimensions.filter(scored).sort((a,b)=>(b.mean??b.average)-(a.mean??a.average)),firstDimension=ranked[0],next=ranked[1];
  const hasIndependentSecond=firstDimension&&next&&firstDimension!==next;
  const substitutions={top:label(firstDimension),next:label(next),nextStatus:status(next,c)};
  // The Portrait explains the respondent's pattern and perspective. It does not
