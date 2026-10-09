@@ -1,3 +1,4 @@
+import {interpretReadiness} from './interpretation.js';
 import {markReportNames} from './trademarks.js';
 import './report-standard.js';
 import fs from 'node:fs';
@@ -50,6 +51,14 @@ export function buildReport(answers,language,{now=new Date()}={}){
  pages[3].dimensions=local.dims.map(dimension);pages[3].points=local.subs.map(s=>({label:s.label,level:s.level,status:s.status}));
  for(let i=6;i<=11;i++){pages[i].scores=local.subs.slice((i-6)*4,(i-5)*4).map(s=>({label:s.label,status:s.status,level:s.level}));pages[i].items[0]={type:'score',text:local.dims[i-6].visibility,status:local.dims[i-6].status,level:local.dims[i-6].level};}
  for(const [n,rows] of [[4,local.strengths],[5,local.priorities]])pages[n].scores=rows.map((s,i)=>({label:(i+1)+'. '+s.label,status:s.status,level:s.level}));
- return markReportNames(globalThis.AdamasReportStandard.apply({contentVersion:contract.content_version,letterSummaryVersion:globalThis.AdamasLetterSummary.version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages}));
+ const original=globalThis.AdamasReportStandard.apply({contentVersion:contract.content_version,letterSummaryVersion:globalThis.AdamasLetterSummary.version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages});
+ const numeric=Object.values(answers),counts={scored:numeric.filter(v=>Number.isInteger(v)&&v>=1&&v<=5).length,unknown:numeric.filter(v=>v==='dk').length,na:numeric.filter(v=>v==='na').length};
+ const dimensionInput=local.dims.map((d,i)=>({...d,trace:local.subs.slice(i*4,i*4+4).map(q=>q.trace).join('; ')}));
+ const interp=interpretReadiness({review:'nextgen',language,counts,dimensions:dimensionInput,pairs:local.subs,priorities:local.priorities});
+ original.pages.splice(13,0,...interp.pages.map(q=>({...q,number:0,subtitle:'',interpretiveVersion:interp.version})));
+ original.pages.forEach((p,i)=>{p.number=i;});
+ original.numberedPages=original.pages.length-1;
+ original.interpretation={version:interp.version,review:interp.review,coverage:interp.counts,priorityIds:interp.priorityIds,scope:'self-reported; confirmation required'};
+ return markReportNames(original);
 }
 
