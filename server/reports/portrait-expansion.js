@@ -111,12 +111,13 @@ export function expandReadinessPortrait({review,language,counts,dimensions,pairs
  const first=[
   original[0],...(full?[replace(c.overview,d)]:[]),original[1],
   ...(full?[replace(c.secondStrength,d)]:[]),original[2],
+  c.perspective,
   original[3]||c.limited
  ].filter(Boolean);
  const substantialContrast=full&&best.mean-weak.mean>=1.5&&best!==weak;
  const second=[
   substantialContrast?replace(c.different,d):c.noDifferent,
-  replace(c.ordinary,d),c.perspective,replace(c.transition,d),replace(c.pressure,d),
+  replace(c.ordinary,d),replace(c.transition,d),replace(c.pressure,d),
   replace(c.close,d),
   ...((counts?.unknown||0)+(counts?.na||0)>=8?[c.limited]:[])
  ];
