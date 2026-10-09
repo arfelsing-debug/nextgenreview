@@ -72,6 +72,8 @@ export function buildEditorialInstructions(language){
   'Use 2 or 3 flowing paragraphs per section, generally 60 to 100 words per paragraph. Produce four different, compact report pages; avoid padding.',
   'Use language-specific natural grammar and idiom, no untranslated English placeholders, no em dashes, no sentence-opening Because, no trite aphorisms.',
   'Avoid constructions of the form "X is the point", "not X but Y", or the word distinction unless logically necessary.',
+  'Maintain sustained, developed paragraphs with varied syntax. Avoid isolated punchline sentences, repeated transition formulas and repeated adjectives.'
+  + ' Avoid especially, quiet or quietly unless literally about volume, and avoid retrospective stock openings.',
   'Ground material observations in the named dimensions and subdimensions, using only their supplied statuses.',
   'For EACH section return evidence_ids listing 2 to 6 supporting IDs from allowed_evidence_ids; never invent IDs.',
   'If scored coverage is low, do not assert strengths or weaknesses. Explain the limits of visibility concisely.',
