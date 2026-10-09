@@ -206,6 +206,6 @@ export function interpretReadiness(input){
   page(c.action,priorities.slice(0,2).flatMap(actionItems)),
   page(c.continued,[...actionItems(priorities[2]),para(c.caveat)])
  ];
- return {version:interpretationVersion,portraitVersion:expanded.version,portraitWordCount:expanded.wordCount,exposuresVersion:exposures.version,exposuresWordCount:exposures.wordCount,review,language:lang,counts,
+ return {version:interpretationVersion,portraitVersion:expanded.version,portraitWordCount:expanded.wordCount,portraitPattern:expanded.editorialPattern,exposuresVersion:exposures.version,exposuresWordCount:exposures.wordCount,review,language:lang,counts,
   priorityIds:priorities.map((x,i)=>x.id??x.index??(reference(x)||String(i))),pages:out};
 }
