@@ -1,0 +1,44 @@
+name: NextGen interpretive report validation
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install and test NextGen server
+        working-directory: server
+        run: npm ci
+      - name: Install browser build
+        run: npm ci
+      - name: Build online report
+        run: npm run build
+      - name: Install browser and PDF auditing
+        run: |
+          python -m pip install 'PyMuPDF==1.26.7' 'Pillow==11.3.0' 'playwright==1.57.0'
+          python -m playwright install --with-deps chromium
+      - name: Verify fictional browser and PDF reports in all languages
+        working-directory: server
+        env:
+          PORT: '3088'
+          DATABASE_URL: postgres://qa:qa@127.0.0.1:1/qa
+        run: |
+          mkdir -p qa-output
+          node src/server.js > qa-output/server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          python scripts/verify-interpretive-release.py --base http://127.0.0.1:3088 --out qa-output
+      - name: Retain fictional specimens and verification manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextgen-interpretive-browser-pdf-verification
+          path: server/qa-output
+          retention-days: 7
+          if-no-files-found: warn

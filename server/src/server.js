@@ -1,3 +1,4 @@
+import {specimenReport} from '../reports/specimen.js';
 import {installReportRoutes} from '../reports/routes.js';import {contract as reportContract} from '../reports/model.js';import {buildReport} from '../reports/pages.js';import {renderPDF} from '../reports/pdf.js';
 import express from "express";import path from "node:path";import{fileURLToPath}from"node:url";import helmet from "helmet";import cookieParser from "cookie-parser";import{rateLimit}from"express-rate-limit";import{randomToken,sha256,sessionCookieOptions,ipFingerprint}from"./security.js";import{pgstore as store}from"./pgstore.js";import{issueCsrf,verifyCsrf}from"./csrf.js";import{locateIp}from"./geolocation.js";
 const app=express();app.set("trust proxy",1);app.use(helmet());app.use(express.json({limit:"32kb"}));app.use(cookieParser());app.use("/api/",rateLimit({windowMs:60_000,limit:60,standardHeaders:"draft-8",legacyHeaders:false}));const accessLimiter=rateLimit({windowMs:60*60_000,limit:5,standardHeaders:"draft-8",legacyHeaders:false});
@@ -30,7 +31,21 @@ app.get("/api/session",async(req,res)=>{const s=await current(req);if(!s)return 
 app.put("/api/responses",csrf,async(req,res)=>{const s=req.reviewSession;if(!s)return res.status(401).json({error:"unauthorized"});const answers=req.body.answers||{};for(const[k,v]of Object.entries(answers)){if(!/^NRR-Q(0[1-9]|[1-3][0-9]|4[0-8])$/.test(k)||![1,2,3,4,5,"dk","na"].includes(v))return res.status(400).json({error:"invalid_response"})}await store.saveResponses(s.id,{answers});res.json({ok:true})});
 app.post("/api/complete",csrf,async(req,res)=>{const s=req.reviewSession;if(!s)return res.status(401).json({error:"unauthorized"});const a=(await store.responses(s.id))?.answers||{};if(Object.keys(a).length!==48)return res.status(400).json({error:"incomplete"});const report=buildReport(a,s.language),pdf=await renderPDF(report);await store.completeAndArchive(s.id,{id:randomToken(18),invitationId:s.invitationId,fullName:s.fullName,email:s.email,language:s.language,report,pdfBytes:Buffer.from(pdf.bytes),pdfSha256:sha256(Buffer.from(pdf.bytes)),reportVersion:reportContract.content_version});res.json({ok:true})});
 installReportRoutes(app,{current,store});
-app.get("/health",(req,res)=>res.json({ok:true,service:"nextgenreview",reporting:{letterSummaryVersion:"1.0.0",contentVersion:reportContract.content_version,languages:reportContract.supported_languages,numberedPages:17,coverPages:1}}));const here=path.dirname(fileURLToPath(import.meta.url)),dist=path.resolve(here,"../../dist");app.use(express.static(dist));app.get("/{*splat}",(req,res)=>res.sendFile(path.join(dist,"index.html")));
+async function qaSpecimen(req,res){
+ try{
+  const language=String(req.query.language||req.query.lang||'en'),scenario=String(req.query.case||'mixed');
+  const report=await specimenReport(language,scenario);
+  res.set('Cache-Control','no-store').set('X-Robots-Tag','noindex, nofollow, noarchive');
+  res.set('X-Interpretation-Version',report.interpretation.version).set('X-Report-Pages',String(report.pages.length)).set('X-Compass-SHA256',report.compass.sha256);
+  if(req.path.endsWith('.pdf'))return res.type('application/pdf').send(Buffer.from((await renderPDF(report)).bytes));
+  if(req.path.endsWith('.png'))return res.type('image/png').send(Buffer.from(report.compass.image.split(',')[1],'base64'));
+  res.json(report);
+ }catch(error){res.status(400).json({error:'invalid_specimen'});}
+}
+app.get('/qa/specimen.json',qaSpecimen);
+app.get('/qa/specimen.pdf',qaSpecimen);
+app.get('/qa/specimen.png',qaSpecimen);
+app.get("/health",(req,res)=>res.json({ok:true,service:"nextgenreview",reporting:{letterSummaryVersion:"1.0.0",contentVersion:reportContract.content_version,languages:reportContract.supported_languages,numberedPages:22,coverPages:1,interpretationVersion:"1.1.0"}}));const here=path.dirname(fileURLToPath(import.meta.url)),dist=path.resolve(here,"../../dist");app.use(express.static(dist));app.get("/{*splat}",(req,res)=>res.sendFile(path.join(dist,"index.html")));
 const port=Number(process.env.PORT||3001);app.listen(port,()=>console.log("NextGen server listening",port));
 
 
