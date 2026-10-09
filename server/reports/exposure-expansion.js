@@ -1,3 +1,4 @@
+import {editorialRead} from './editorial-logic.js';
 /** Evidence-grounded strengths and exposures analysis. No scoring or risk forecasting. */
 export const EXPOSURES_VERSION='2.0.0';
 const text={
@@ -99,37 +100,20 @@ const label=p=>String(p?.name||p?.label||p?.title||'').trim();
 const ref=p=>String(p?.trace||(Array.isArray(p?.questions)?p.questions.join(', '):'')).trim();
 const fmt=(template,vars)=>template.replace(/\{(\w+)\}/g,(_,k)=>String(vars[k]??''));
 export function expandStrengthsAndExposures({review,language,counts,pairs,dimensions,priorities,existing}){
- const c=text[language],domain=specifics[review]?.[language],scenario=scenarios[review]?.[language];
- if(!c||!domain||!scenario||pairs?.length!==24||dimensions?.length!==6||priorities?.length!==3)throw Error('invalid_exposures_input');
- const ordered=pairs.filter(valid).sort((a,b)=>b.mean-a.mean);
- const strong=ordered.find(p=>['green','established'].includes(p.status))||null;
- const other=ordered.filter(p=>p!==strong)[0]||null;
- const weak=[...ordered].reverse().find(p=>['red','amber','exposed','developing'].includes(p.status))||null;
- const main=strong||ordered[0]||null;
- const second=other||main;
- const firstRef=ref(main),secondRef=ref(second),weakRef=ref(weak),priority=priorities[0];
- const d={
-  first:label(main)||'',firstRef:firstRef||'not scored',
-  second:label(second)||label(main)||'',secondRef:secondRef||'not scored',
-  strong:label(strong)||'',weak:label(weak)||'',weakRef:weakRef||'not scored',
-  weakStatus:status(weak,language),refs:[firstRef,weakRef].filter(Boolean).join('; '),
-  unknown:counts?.unknown??0,na:counts?.na??0,
-  domain,scenario,priority:label(priority),priorityRef:ref(priority)
- };
- const page1=[
-  strong?fmt(c.strengthIntro,d):c.noStrength,
-  other&&main?fmt(c.strengthSecond,d):c.strengthNotProven,
-  strong&&weak&&strong.mean-weak.mean>=1.5?fmt(c.compare,d):c.comparisonFallback,
-  c.resilience
- ];
- const page2=[
-  weak?fmt(c.exposuresIntro,d):c.noExposure,
-  fmt(c.consequence,{...d,weak:label(weak)||label(priorities[0])}),
-  fmt(c.uncertainty,d),
-  fmt(c.stress,d),
-  fmt(c.action,d)
- ];
+ const c=text[language];
+ if(!c||pairs?.length!==24||dimensions?.length!==6||priorities?.length!==3)throw Error('invalid_exposures_input');
+ const editorial=editorialRead({review,language,counts,dimensions,pairs,priorities});
+ // This section concerns evidence and consequence. Scenario rehearsals and
+ // scheduled actions are addressed only in the dedicated later chapters.
+ const page1=[editorial.strength,editorial.secondStrength,
+  !editorial.visibility&&editorial.secondStrength?c.strengthNotProven:null
+ ].filter(Boolean);
+ const page2=[editorial.exposure,editorial.dependency,editorial.consequence,
+  editorial.uncertainty,editorial.evidence
+ ].filter(Boolean);
  const para=arr=>arr.map(value=>({type:'paragraph',text:value}));
  const words=(page1.join(' ')+' '+page2.join(' ')).trim().split(/\s+/).length;
- return {version:EXPOSURES_VERSION,first:para(page1),second:{title:c.second,items:para(page2),interpretive:true},wordCount:words,sourceReferences:[firstRef,secondRef,weakRef].filter(Boolean)};
+ return {version:EXPOSURES_VERSION,editorialVersion:editorial.version,pattern:editorial.pattern,
+  first:para(page1),second:{title:c.second,items:para(page2),interpretive:true},
+  wordCount:words,sourceReferences:[editorial.trace].filter(Boolean)};
 }
