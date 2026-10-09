@@ -38,5 +38,5 @@ export async function renderPDF(report){
   bounds.push({page:spec.number,bottom:layoutResult.y,fontSize:size});
   if(spec.number!==1){page.drawRectangle({x:78,y:68,width:480,height:44,borderColor:gold,borderWidth:.6});text(page,tr('Notes / agreed next step:'),89,99,7.5,body,green);page.drawLine({start:{x:89,y:84},end:{x:547,y:84},color:line,thickness:.35});}
  }
- if(doc.getPageCount()!==18)throw Error('report_page_count');return {bytes:await doc.save(),bounds};
+ if(doc.getPageCount()!==report.pages.length||report.pages.some((p,i)=>p.number!==i))throw Error('report_page_count');return {bytes:await doc.save(),bounds};
 }
