@@ -9,6 +9,7 @@ test('editorial evidence brief covers actual fictional scores and excludes ident
   const brief=extractNarrativeBrief(report,{review});
   assert.equal(brief.language,language);assert.equal(brief.dimensions.length,6);
   assert.equal(brief.pairs.length,24);assert.equal(brief.allowed_evidence_ids.length,30);
+  assert.equal(brief.priorities.length,3);
   assert.equal(brief.counts.scored+brief.counts.unknown+brief.counts.not_applicable,48);
   assert.ok(!JSON.stringify(brief).includes('@'));
   if(caseName==='unknown')assert.equal(brief.counts.scored,0);
