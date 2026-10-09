@@ -1,0 +1,128 @@
+/**
+ * Adamas Readiness Portrait expansion v2.0
+ *
+ * Adds a second editorial page without changing scoring or priority selection.
+ * Narrative sentences are conditional hypotheses derived from recorded answers,
+ * with question trace identifiers and conservative treatment of low visibility.
+ */
+export const PORTRAIT_VERSION='2.0.0';
+const copy={
+ en:{
+  second:'What Your Readiness Portrait Reveals',
+  condition:{established:'reported as established',developing:'reported as developing',exposed:'reported as requiring attention',unclear:'not sufficiently scored'},
+  overview:'Taken together, the six dimensions describe an uneven or developing system of preparedness rather than a single judgement. {top} is among the comparatively stronger assessed areas, while {low} requires a different degree of attention. A higher response in one area cannot compensate automatically for an uncertainty elsewhere, since authority, practical experience and access to information frequently depend on one another. The useful reading is therefore comparative: what seems to work, where that confidence has been earned, and which missing arrangements would matter if a decision could no longer be postponed.',
+  secondStrength:'Another area worth examining is {next}. Its reported position is {nextStatus}, which offers a second perspective on the overall pattern. Compare it with {top} through a recent example rather than assuming that similar scores mean similar arrangements. Ask whether the practices behind both results are documented, understood by more than one authorised person and capable of continuing when the familiar participants are absent. This exercise should also identify what is genuinely established and what depends on the respondent’s own knowledge or access.',
+  different:'A material feature of the answers is the relationship between {bestPair} ({bestRef}) and {weakPair} ({weakRef}). The first is reported more favourably than the second, yet the two may become connected when responsibility moves or decisions are contested. The responses do not prove that such a dependency exists. They suggest a precise question for discussion: which successful arrangement relies, directly or indirectly, upon the weaker one, and what would show that the reliance is either manageable or more serious than the respondent currently understands?',
+  noDifferent:'The complete scored areas do not establish a pronounced contrast that justifies a particular dependency hypothesis. That should not be mistaken for proof of alignment. A practical comparison can still be useful: identify two recent decisions, compare who was authorised to act and what information was available, and ask whether the same process would be comprehensible to someone entering the arrangement for the first time. Where answers remain unscored, begin with access and relevance rather than inferring a deficiency.',
+  shared:'The relative positions of {first} and {second} also deserve a closer reading. If the arrangements behind the first score rely upon habits, informal understanding or personal relationships, their apparent effectiveness may be difficult to transfer. Conversely, a formal process can exist on paper while remaining unfamiliar to the people expected to use it. Review the responses supporting these two areas ({refs}) and seek an independent example of each. The purpose is to distinguish a functioning capability from confidence that has yet to be tested.',
+  ordinary:'In ordinary circumstances, choose one recent decision relevant to {domain} and reconstruct it from beginning to end. Establish who initiated it, which information was available, where authority rested, how disagreement was handled and whether a useful record remains. These questions connect the respondent’s account to observable practice. If the answers and documentation agree, they may strengthen confidence in the portrait; if they diverge, the discrepancy becomes a specific issue for follow-up rather than a reason to disregard the entire Review.',
+  transition:'Next, consider a transfer of responsibility. {scenario} The reported pattern in {focus} makes this a worthwhile exercise, but the questionnaire cannot predict what would actually happen. Ask the responsible participants to rehearse a handover, identify unavailable information and record the first decision that would require additional authority. That practical evidence is more valuable than assuming either that existing relationships will automatically continue or that an untested arrangement must inevitably fail.',
+  pressure:'An adverse circumstance offers a further test of readiness. {stress} Consider whether the arrangements described under {risk} can continue when usual participants are absent, time is short or interests conflict. A successful exercise should leave a record of who acted, what information was missing and which safeguard genuinely worked. Difficulties discovered in a controlled rehearsal are development opportunities, not proof that the event will occur or that the people involved lack goodwill.',
+  close:'The strongest next step is to treat this portrait as a discussion document. Begin with {priority}, one of the three priorities already selected by the Review, and agree the evidence that would resolve the question. Include an authorised person who can confirm the facts, a responsible lead, a first action within thirty days and a practical check within ninety days. Review the outcome after twelve months. The conclusions should evolve when better evidence becomes available; the questionnaire describes the starting position, while subsequent decisions and experience establish whether genuine preparedness is improving.',
+  limited:'Several answers are unknown or not applicable. Their absence limits the strength of any comparison, so the immediate task is to establish whether the respondent lacks access, the question is genuinely outside their role or the relevant arrangement has not been explained. Avoid treating missing information as either a reassuring score or a demonstrated weakness.'
+ },
+ cs:{
+  second:'Co Váš obraz připravenosti odhaluje',
+  condition:{established:'uváděna jako pevně zakotvená',developing:'uváděna jako rozvíjející se',exposed:'uváděna jako oblast vyžadující pozornost',unclear:'bez dostatečného hodnocení'},
+  overview:'Šest posuzovaných oblastí vytváří společný obraz připravenosti, který nelze poctivě zredukovat na jediný úsudek. {top} patří mezi relativně silnější hodnocené oblasti, zatímco {low} si žádá odlišnou pozornost. Příznivá odpověď v jedné oblasti automaticky nevyrovnává nejistotu v jiné, protože pravomoci, skutečná zkušenost a přístup k informacím spolu často souvisejí. Je proto užitečné porovnat, co podle odpovědí funguje, na čem je tato důvěra založena a jaké nedostatky by se projevily při naléhavém rozhodování.',
+  secondStrength:'Pozornost si zaslouží také oblast {next}. Její uváděný stav je {nextStatus} a poskytuje další pohled na celkové uspořádání. Porovnejte ji s oblastí {top} prostřednictvím nedávné skutečné situace; podobná čísla ještě neznamenají obdobnou praxi. Zjistěte, zda jsou příslušné postupy zaznamenány, zda jim rozumí více než jedna oprávněná osoba a zda by mohly pokračovat při nepřítomnosti obvyklých účastníků. Takové ověření pomáhá rozlišit skutečně zavedené fungování od subjektivního dojmu respondenta.',
+  different:'Důležitým rysem odpovědí je vztah mezi {bestPair} ({bestRef}) a {weakPair} ({weakRef}). První oblast je hodnocena příznivěji, avšak obě se mohou propojit při předávání odpovědnosti nebo při sporném rozhodování. Odpovědi samy nedokazují existenci takové závislosti. Nabízejí však konkrétní otázku: které zavedené uspořádání se přímo či nepřímo opírá o méně rozvinutou oblast a jakým způsobem lze ověřit, zda je tato závislost zvládnutelná?',
+  noDifferent:'Úplné hodnocené odpovědi neukazují natolik výrazný rozdíl, aby bylo možné vyvodit konkrétní závislost. To však neprokazuje soulad celého systému. Vyberte dvě nedávná rozhodnutí a porovnejte, kdo měl pravomoc jednat, jaké informace byly dostupné a zda by stejnému postupu rozuměl člověk, který se na něm dosud nepodílel. U nehodnocených odpovědí nejprve ověřte přístup k informacím a relevantnost otázky.',
+  shared:'Relativní postavení oblastí {first} a {second} si zaslouží bližší posouzení. Pokud účinnost první z nich spočívá na zvyklostech, neformálním porozumění či osobních vztazích, může být obtížné ji přenést na jiné osoby. Naopak formální pravidlo může existovat pouze na papíře a lidé, kteří je mají používat, ho nemusejí znát. Ověřte odpovědi, z nichž obě hodnocení vycházejí ({refs}), a najděte nezávislý příklad jejich skutečného fungování.',
+  ordinary:'Za běžných okolností vyberte jedno nedávné rozhodnutí související s oblastí {domain} a podrobně zrekonstruujte jeho průběh. Kdo je zahájil, které informace byly k dispozici, kdo měl pravomoc, jak se řešily případné námitky a jaký zůstal záznam? Tyto otázky propojují respondentovo vyjádření s ověřitelnou praxí. Pokud dokumentace odpovědi potvrzuje, důvěra v závěry roste; pokud se liší, vzniká konkrétní úkol k dalšímu prověření.',
+  transition:'Další prověrkou je předání odpovědnosti. {scenario} Uváděný stav oblasti {focus} je důvodem k provedení takové zkoušky, nikoli předpovědí budoucího vývoje. Požádejte odpovědné osoby, aby předání nacvičily, určily případně nedostupné informace a zaznamenaly první rozhodnutí vyžadující další oprávnění. Takový důkaz je užitečnější než předpoklad, že dosavadní vztahy budou automaticky pokračovat nebo že neověřený postup nutně selže.',
+  pressure:'Zátěžová situace nabízí další příležitost k prověření připravenosti. {stress} Ověřte, zda postupy spojené s oblastí {risk} obstojí při nepřítomnosti obvyklých účastníků, nedostatku času nebo rozdílných zájmech. Výsledkem úspěšného cvičení má být písemný záznam o rozhodování, chybějících informacích a skutečně účinných opatřeních. Obtíže zjištěné během zkoušky představují příležitost ke zlepšení, nikoli důkaz, že krizová situace nastane.',
+  close:'Tento obraz připravenosti by měl sloužit jako podklad pro věcný rozhovor. Začněte oblastí {priority}, která patří mezi tři priority vybrané stávajícím modelem Review, a předem dohodněte důkaz potřebný k objasnění situace. Zapojte oprávněnou osobu schopnou potvrdit fakta, určete odpovědného vedoucího a první krok do třiceti dnů; do devadesáti dnů proveďte praktické ověření. Za dvanáct měsíců posuďte výsledek. Závěry se mají měnit podle nových podkladů.',
+  limited:'Některé odpovědi jsou neznámé či nerelevantní. Nejprve je třeba zjistit, zda respondent nemá přístup k informacím, zda otázka skutečně nepatří do jeho role nebo zda příslušné uspořádání nebylo vysvětleno. Chybějící informaci nelze považovat za silnou stránku ani za prokázanou slabinu.'
+ },
+ de:{
+  second:'Was Ihr Readiness-Porträt erkennen lässt',
+  condition:{established:'als gefestigt berichtet',developing:'als im Aufbau berichtet',exposed:'als prüfungsbedürftig berichtet',unclear:'nicht hinreichend bewertet'},
+  overview:'Die sechs untersuchten Bereiche ergeben ein Gesamtbild der Vorbereitung, das sich nicht auf ein einziges Urteil reduzieren lässt. {top} gehört zu den vergleichsweise stärker bewerteten Bereichen, während {low} andere Aufmerksamkeit erfordert. Eine günstige Antwort kann Unsicherheit an anderer Stelle nicht automatisch ausgleichen, denn Befugnisse, praktische Erfahrung und Informationszugang hängen häufig zusammen. Entscheidend ist daher der Vergleich: Was scheint zu funktionieren, welche Erfahrungen tragen dieses Vertrauen, und welche offene Regelung könnte wichtig werden, wenn eine Entscheidung nicht länger aufgeschoben werden kann?',
+  secondStrength:'Ein weiterer Bereich, der Beachtung verdient, ist {next}. Er wird {nextStatus} und eröffnet damit eine zweite Perspektive auf das Gesamtbild. Vergleichen Sie ihn anhand einer jüngeren Entscheidung mit {top}, anstatt aus ähnlichen Werten auf identische Verfahren zu schließen. Prüfen Sie, ob beide Abläufe dokumentiert sind, ob mehr als eine berechtigte Person sie versteht und ob sie auch ohne die bisher Beteiligten funktionieren würden. Dadurch lässt sich tatsächliche Verlässlichkeit von begrenztem Wissen oder bloßer Zuversicht unterscheiden.',
+  different:'Ein auffälliger Zusammenhang besteht zwischen {bestPair} ({bestRef}) und {weakPair} ({weakRef}). Der erste Bereich wird günstiger beurteilt, doch bei einem Verantwortungswechsel oder strittigen Beschlüssen könnten beide voneinander abhängen. Die Antworten beweisen eine solche Abhängigkeit nicht. Sie begründen vielmehr eine konkrete Prüfungsfrage: Welche funktionierende Regelung stützt sich unmittelbar oder mittelbar auf den weniger gefestigten Bereich, und welche Unterlagen oder Erfahrungen könnten zeigen, ob dieses Risiko beherrschbar ist?',
+  noDifferent:'Die vollständig bewerteten Bereiche zeigen keinen ausreichend ausgeprägten Unterschied für eine konkrete Abhängigkeitshypothese. Das beweist jedoch keineswegs, dass alle Regelungen miteinander harmonieren. Untersuchen Sie zwei jüngere Entscheidungen und vergleichen Sie Befugnisse, verfügbare Informationen und den tatsächlichen Ablauf. Fragen Sie auch, ob eine neu hinzukommende Person den Prozess nachvollziehen könnte. Fehlende Antworten erfordern zunächst die Klärung von Zugang und Anwendbarkeit.',
+  shared:'Die relative Lage von {first} und {second} sollte genauer betrachtet werden. Beruht der erste Bereich auf Gewohnheiten, informellen Absprachen oder persönlichen Beziehungen, kann seine Wirksamkeit bei einem Personenwechsel schwer übertragbar sein. Umgekehrt kann ein formales Verfahren bestehen, ohne dass die beteiligten Personen es ausreichend kennen. Prüfen Sie die zugrunde liegenden Antworten ({refs}) und suchen Sie für beide Bereiche ein unabhängiges praktisches Beispiel. Damit unterscheiden Sie eine erprobte Fähigkeit von einer noch unbestätigten Erwartung.',
+  ordinary:'Wählen Sie unter normalen Bedingungen eine jüngere Entscheidung im Zusammenhang mit {domain} und rekonstruieren Sie deren gesamten Ablauf. Wer hat sie angestoßen, welche Informationen standen zur Verfügung, wer durfte entscheiden, wie wurden Einwände behandelt und was wurde festgehalten? Diese Fragen verbinden die Selbstauskunft mit überprüfbaren Vorgängen. Stimmen Antworten und Unterlagen überein, kann das Vertrauen in das Porträt wachsen; weichen sie ab, entsteht ein konkreter Gegenstand für weitere Klärung.',
+  transition:'Betrachten Sie danach einen Wechsel der Verantwortung. {scenario} Das berichtete Ergebnis zu {focus} rechtfertigt eine solche Übung, erlaubt aber keine Vorhersage tatsächlicher Ereignisse. Lassen Sie die Verantwortlichen eine Übergabe erproben, fehlende Informationen erkennen und die erste Entscheidung notieren, für die zusätzliche Befugnisse nötig wären. Ein solcher Befund ist aussagekräftiger als die bloße Annahme, persönliche Beziehungen würden automatisch fortbestehen oder eine unerprobte Regelung werde zwangsläufig scheitern.',
+  pressure:'Eine belastende Situation bietet einen weiteren Test. {stress} Prüfen Sie, ob die Regelungen im Bereich {risk} auch dann tragen, wenn wichtige Personen fehlen, wenig Zeit bleibt oder Interessen auseinandergehen. Das Ergebnis sollte dokumentieren, wer gehandelt hat, welche Informationen fehlten und welche Schutzmaßnahme tatsächlich wirkte. Schwierigkeiten, die während einer begrenzten Übung sichtbar werden, bieten eine Gelegenheit zur Entwicklung. Sie sind kein Beweis dafür, dass eine Krise eintreten wird.',
+  close:'Nutzen Sie dieses Porträt als Grundlage für ein strukturiertes Gespräch. Beginnen Sie mit {priority}, einem der drei Themen, die das vorhandene Review-Modell priorisiert hat, und vereinbaren Sie einen überprüfbaren Nachweis. Beziehen Sie eine berechtigte Person ein, bestimmen Sie eine verantwortliche Leitung und beginnen Sie innerhalb von dreißig Tagen mit einem konkreten Schritt. Prüfen Sie das Ergebnis innerhalb von neunzig Tagen und nach zwölf Monaten erneut. Bessere Unterlagen sollten die Interpretation verändern dürfen; die Antworten beschreiben zunächst nur die Ausgangslage.',
+  limited:'Einige Angaben sind unbekannt oder nicht anwendbar. Klären Sie, ob es an Informationszugang fehlt, die Frage tatsächlich außerhalb der Rolle liegt oder eine vorhandene Regelung nicht erklärt wurde. Fehlende Antworten begründen weder eine günstige Bewertung noch eine nachgewiesene Schwäche.'
+ }
+};
+const scenario={
+ family:{
+  en:['Test whether a family decision remains possible when a principal or family representative cannot participate.','Use a contested succession or unexpected incapacity to examine recorded authority and access to governing documents.'],
+  cs:['Prověřte, zda lze přijmout rodinné rozhodnutí při nepřítomnosti hlavní rozhodující osoby.','Při sporném nástupnictví či náhlé nezpůsobilosti ověřte pravomoci a přístup k řídicím dokumentům.'],
+  de:['Prüfen Sie, ob eine Familienentscheidung auch ohne eine maßgebliche Person getroffen werden kann.','Untersuchen Sie bei strittiger Nachfolge oder unerwarteter Handlungsunfähigkeit Befugnisse und Dokumentenzugang.']
+ },
+ nextgen:{
+  en:['Test whether a younger owner can assume a bounded decision with sufficient information, supervision and accountability.','Use an unfamiliar ownership decision to assess when the respondent would seek support and which authority is actually available.'],
+  cs:['Ověřte, zda může nastupující vlastník převzít vymezené rozhodnutí s dostatečnými informacemi a dohledem.','Na neznámém vlastnickém rozhodnutí prověřte potřebu podpory a skutečné pravomoci respondenta.'],
+  de:['Prüfen Sie, ob die nächste Generation eine begrenzte Entscheidung mit ausreichenden Informationen und angemessener Aufsicht übernehmen kann.','Untersuchen Sie bei einer ungewohnten Eigentümerentscheidung, welche Unterstützung und Befugnisse verfügbar wären.']
+ },
+ shareholder:{
+  en:['Test how ownership rights and voting authority would transfer if representatives changed.','Use a contested shareholder resolution to examine information rights, voting rules and the treatment of dissent.'],
+  cs:['Prověřte, jak by se při změně zástupců předávaly vlastnické pravomoci a hlasovací oprávnění.','Na sporném usnesení akcionářů ověřte informační práva, hlasovací pravidla a řešení nesouhlasu.'],
+  de:['Prüfen Sie, wie Eigentümerrechte und Stimmrechtsbefugnisse bei einem Vertreterwechsel übergehen würden.','Untersuchen Sie bei einem strittigen Gesellschafterbeschluss Informationsrechte, Abstimmungsregeln und den Umgang mit Widerspruch.']
+ },
+ adviser:{
+  en:['Test whether an adviser change would preserve mandates, records, responsibility and coordination with other professionals.','Use a material disagreement between professional recommendations to examine who is accountable for reconciliation.'],
+  cs:['Ověřte, zda by výměna poradce zachovala mandáty, záznamy, odpovědnost a koordinaci ostatních profesionálů.','Při zásadně rozporných odborných doporučeních prověřte, kdo odpovídá za jejich sladění.'],
+  de:['Prüfen Sie, ob ein Beraterwechsel Mandate, Unterlagen, Zuständigkeiten und die Koordination anderer Fachleute wahrt.','Untersuchen Sie bei widersprüchlichen Fachgutachten, wer für die Abstimmung verantwortlich ist.']
+ },
+ investment:{
+  en:['Test whether the mandate and escalation routes survive the departure of the principal portfolio or relationship manager.','Use a sharp market decline and urgent liquidity request to examine investment limits, risk reporting and authority.'],
+  cs:['Ověřte, zda mandát a eskalační postupy obstojí při odchodu hlavního portfolio manažera či kontaktní osoby.','Při prudkém poklesu trhu a naléhavé potřebě likvidity prověřte limity, reporting rizik a rozhodovací pravomoci.'],
+  de:['Prüfen Sie, ob Mandat und Eskalationswege den Weggang des führenden Portfolio- oder Beziehungsmanagers überstehen.','Untersuchen Sie bei einem starken Marktrückgang und dringendem Liquiditätsbedarf Anlagegrenzen, Risikoberichte und Befugnisse.']
+ }
+};
+const replace=(str,data)=>str.replace(/\{(\w+)\}/g,(_,k)=>String(data[k]??''));
+const status=(r,locale)=>{
+ let raw=(r?.status||'unclear').toLowerCase();
+ if(raw==='green')raw='established';if(raw==='amber')raw='developing';if(raw==='red')raw='exposed';if(raw==='grey')raw='unclear';
+ return locale.condition[raw]||locale.condition.unclear;
+};
+const scored=r=>Number.isFinite(r?.mean)&&!['unclear','grey'].includes(r?.status);
+const label=x=>String(x?.name||x?.label||x?.title||'').trim();
+const trace=x=>String(x?.trace||(Array.isArray(x?.questions)?x.questions.join(', '):'')).trim();
+const wordCount=s=>s.trim().split(/\s+/).filter(Boolean).length;
+/**
+ * original: the four existing Readiness Portrait paragraphs, preserved verbatim.
+ * Returns two portrait pages; no new score is created.
+ */
+export function expandReadinessPortrait({review,language,counts,dimensions,pairs,priorities,original}){
+ const c=copy[language],sc= scenario[review]?.[language];
+ if(!c||!sc||!Array.isArray(dimensions)||dimensions.length!==6||!Array.isArray(pairs)||pairs.length!==24||!Array.isArray(priorities)||priorities.length!==3||!Array.isArray(original)||original.length<3)throw Error('invalid_portrait_expansion');
+ const dimensionRank=dimensions.filter(scored).sort((a,b)=>b.mean-a.mean),top=dimensionRank[0],low=dimensionRank.at(-1),next=dimensionRank[1]||top;
+ const ranked=pairs.filter(scored).sort((a,b)=>b.mean-a.mean),best=ranked[0],weak=ranked.at(-1);
+ const blank=(language==='en'?'areas requiring clarification':language==='cs'?'oblastmi k vyjasnění':'klärungsbedürftigen Bereichen');
+ const d={
+  top:label(top)||blank,low:label(low)||blank,next:label(next)||blank,nextStatus:status(next,c),
+  bestPair:label(best)||blank,weakPair:label(weak)||blank,bestRef:trace(best)||'unscored',weakRef:trace(weak)||'unscored',
+  first:label(top)||blank,second:label(low)||blank,refs:[trace(top),trace(low)].filter(Boolean).join('; ')||[trace(best),trace(weak)].filter(Boolean).join('; ')||'insufficient',
+  domain:label(top)||blank,focus:label(low)||blank,risk:label(dimensions[2])||blank,priority:label(priorities[0])||blank,
+  scenario:sc[0],stress:sc[1]
+ };
+ const full=!!best&&!!weak&&!!top&&!!low;
+ const first=[
+  original[0],...(full?[replace(c.overview,d)]:[]),original[1],
+  ...(full?[replace(c.secondStrength,d)]:[]),original[2],
+  original[3]||c.limited
+ ].filter(Boolean);
+ const substantialContrast=full&&best.mean-weak.mean>=1.5&&best!==weak;
+ const second=[
+  substantialContrast?replace(c.different,d):c.noDifferent,
+  ...(full?[replace(c.shared,d)]:[]),
+  replace(c.ordinary,d),replace(c.transition,d),replace(c.pressure,d),
+  replace(c.close,d),
+  ...((counts?.unknown||0)+(counts?.na||0)>=8?[c.limited]:[])
+ ];
+ return {
+  version:PORTRAIT_VERSION,
+  first: first.map(text=>({type:'paragraph',text})),
+  second:{title:c.second,items:second.map(text=>({type:'paragraph',text})),interpretive:true,portraitContinuation:true},
+  wordCount:wordCount([...first,...second].join(' ')),
+  sourceCoverage:counts?.scored??null
+ };
+}
