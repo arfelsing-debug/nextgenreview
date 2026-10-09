@@ -25,9 +25,12 @@ function wrapLabel(label,maxWidth=310,size=32) {
 }
 const labelPositions=[[703,60],[1175,245],[1175,686],[703,877],[235,670],[235,245]];
 function labelMarkup(d) {
- const [x,y]=labelPositions[d.index];const lines=wrapLabel(d.label,d.index===0||d.index===3?570:d.index===1?250:320);
- const size=32,leading=34;
- const top=d.index===0||d.index===3?y:y-(lines.length-1)*leading/2;
+ const [x,y]=labelPositions[d.index],limit=d.index===0||d.index===3?570:d.index===1?250:320;
+ let lines=null,size=32;
+ for(const candidate of [32,30,28,26,24,22]){try{lines=wrapLabel(d.label,limit,candidate);size=candidate;break;}catch(e){if(e.message!=='compass_label_overflow')throw e;}}
+ if(!lines)throw Error('compass_label_overflow');
+ const leading=size+2;
+ const top=d.index===0?y:d.index===3?y-(lines.length-1)*leading:y-(lines.length-1)*leading/2;
  const bottom=top+(lines.length-1)*leading;
  const labels=lines.map((s,j)=>textPath(s,x,top+j*leading,size)).join('');
  const lightY=bottom+31,score=d.level===null?'?':d.level+'/3';
