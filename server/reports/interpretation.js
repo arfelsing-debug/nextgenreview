@@ -130,7 +130,22 @@ export function interpretReadiness(input){
  const needing=[...scored].filter(x=>['exposed','developing'].includes(colour(x))).sort((a,b)=>((colour(a)==='exposed'?0:1)-(colour(b)==='exposed'?0:1))||(a.mean??0)-(b.mean??0))[0];
  const strongest=dimensions.filter(valid).sort((a,b)=>(b.mean??0)-(a.mean??0))[0];
  const weakest=dimensions.filter(valid).sort((a,b)=>(a.mean??0)-(b.mean??0))[0];
- const contrast=(best&&needing&&reference(best)&&reference(needing)&&best!==needing)?[best,needing]:null;
+ // Only pre-defined domain dependencies may generate cross-dimensional hypotheses.
+ const allowedDependencies={
+  family:[[2,3],[1,2],[4,5],[0,3]],
+  adviser:[[0,1],[2,3],[4,5]],
+  shareholder:[[0,1],[1,3],[2,3],[4,5]],
+  nextgen:[[1,2],[2,3],[3,4],[4,5]]
+ };
+ let contrast=null;
+ for(const [i,j] of allowedDependencies[review]){
+  const left=pairs.slice(i*4,i*4+4).filter(q=>colour(q)==='established'&&reference(q));
+  const right=pairs.slice(j*4,j*4+4).filter(q=>['developing','exposed'].includes(colour(q))&&reference(q));
+  if(left.length&&right.length){
+   left.sort((a,b)=>(b.mean??0)-(a.mean??0));right.sort((a,b)=>(a.mean??0)-(b.mean??0));
+   contrast=[left[0],right[0]];break;
+  }
+ }
  const pairRefs=fields(...priorities.map(reference));
  const para=text=>({type:'paragraph',text}),head=text=>({type:'heading',text}),field=(label,text)=>({type:'field',label,text:String(text||'')});
  const page=(title,items)=>({title,items,interpretive:true});
