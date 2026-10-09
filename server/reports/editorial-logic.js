@@ -150,15 +150,15 @@ export function editorialRead({review,language,counts,dimensions,pairs,prioritie
  return {
   version:EDITORIAL_VERSION,pattern,visibility,dependency:!!def,scored,locale:language,
   portraitPattern:fill(t[pattern],variables),
-  domain:visibility?fill(t.partial,variables):fill(domains[review][language],variables),
+  domain:visibility?t.contextual:fill(domains[review][language],variables),
   portraitDeep:visibility?fill(t.uncertainty,variables):fill(t.focused,variables),
-  portraitPerspective:t.contextual,
+  portraitPerspective:visibility?fill(t.uncertainty,variables):t.contextual,
   strength:visibility?t.noEvidence:strong?fill(t.strength,variables):t.noStrength,
-  secondStrength:!visibility&&secondStrong?fill(t.secondStrength,variables):t.noStrength,
+  secondStrength:!visibility&&secondStrong?fill(t.secondStrength,variables):null,
   exposure:visibility?t.noEvidence:weak?fill(t.exposure,variables):t.noExposure,
   dependency:def?fill(t.dependency,def):t.noDependency,
-  consequence:!visibility?t.noEvidence:weak?fill(t.consequence,variables):t.noExposure,
-  uncertainty:fill(t.uncertainty,variables),
+  consequence:visibility?null:weak?fill(t.consequence,variables):null,
+  uncertainty:(unknown+na)?fill(t.uncertainty,variables):null,
   evidence:fill(t.evidence,variables),
   trace:evidence
  };
