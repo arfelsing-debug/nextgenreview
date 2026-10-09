@@ -3,6 +3,7 @@ import './report-standard.js';
 import fs from 'node:fs';
 import './letter-summary.js';
 import {analyse,localise,translator,contract,validateAnswers} from './model.js';
+import {interpretReadiness} from './interpretation.js';
 const release=JSON.parse(fs.readFileSync(new URL('./pages.json',import.meta.url),'utf8'));
 if(release.version!==contract.content_version)throw Error('page_template_version_mismatch');
 const templates=release.pages;
@@ -50,6 +51,13 @@ export function buildReport(answers,language,{now=new Date()}={}){
  pages[3].dimensions=local.dims.map(dimension);pages[3].points=local.subs.map(s=>({label:s.label,level:s.level,status:s.status}));
  for(let i=6;i<=11;i++){pages[i].scores=local.subs.slice((i-6)*4,(i-5)*4).map(s=>({label:s.label,status:s.status,level:s.level}));pages[i].items[0]={type:'score',text:local.dims[i-6].visibility,status:local.dims[i-6].status,level:local.dims[i-6].level};}
  for(const [n,rows] of [[4,local.strengths],[5,local.priorities]])pages[n].scores=rows.map((s,i)=>({label:(i+1)+'. '+s.label,status:s.status,level:s.level}));
- return markReportNames(globalThis.AdamasReportStandard.apply({contentVersion:contract.content_version,letterSummaryVersion:globalThis.AdamasLetterSummary.version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages}));
+ const original=globalThis.AdamasReportStandard.apply({contentVersion:contract.content_version,letterSummaryVersion:globalThis.AdamasLetterSummary.version,language,generatedAt:now.toISOString(),date,numberedPages:17,pages});
+ const counts={scored:Object.values(answers).filter(v=>Number.isInteger(v)&&v>=1&&v<=5).length,unknown:Object.values(answers).filter(v=>v==='dk').length,na:Object.values(answers).filter(v=>v==='na').length};
+ const insight=interpretReadiness({review:'nextgen',language,counts,dimensions:local.dims,pairs:local.subs,priorities:local.priorities});
+ original.pages.splice(13,0,...insight.pages.map(p=>({...p,number:0,subtitle:''})));
+ original.pages.forEach((p,i)=>p.number=i);
+ original.numberedPages=original.pages.length-1;
+ original.interpretation={version:insight.version,counts,priorityIds:insight.priorityIds,scope:'self-reported evidence-led hypotheses'};
+ return markReportNames(original);
 }
 
