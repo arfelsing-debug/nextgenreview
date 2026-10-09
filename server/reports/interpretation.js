@@ -5,10 +5,10 @@
  */
 export const interpretationVersion='1.1.0';
 const names={
- family:{en:'Family Continuity',cs:'Kontinuita rodiny',de:'Familienkontinuität'},
- adviser:{en:'Adviser Coordination',cs:'Koordinace poradců',de:'Beraterkoordination'},
- shareholder:{en:'Shareholder Readiness',cs:'Připravenost akcionáře',de:'Vorbereitung als Anteilseigner'},
- nextgen:{en:'NextGen Readiness',cs:'Připravenost další generace',de:'Vorbereitung der nächsten Generation'}
+ family:{en:'Family Continuity',cs:'kontinuity rodiny',de:'Familienkontinuität'},
+ adviser:{en:'Adviser Coordination',cs:'koordinace poradců',de:'Beraterkoordination'},
+ shareholder:{en:'Shareholder Readiness',cs:'připravenosti akcionáře',de:'Vorbereitung als Anteilseigner'},
+ nextgen:{en:'NextGen Readiness',cs:'připravenosti další generace',de:'Vorbereitung der nächsten Generation'}
 };
 const language={
  en:{
@@ -78,6 +78,11 @@ const language={
   evidence:'Prüfen Sie ein relevantes Dokument oder eine jüngere Entscheidung mit einer berechtigten Person. Halten Sie Übereinstimmungen, Unklarheiten und Abweichungen zwischen Verständnis und gelebter Praxis fest.'
  }
 };
+const localStatus={
+ en:{exposed:'an exposure',developing:'developing preparedness'},
+ cs:{exposed:'zranitelnosti',developing:'postupného rozvoje'},
+ de:{exposed:'einer noch unzureichend abgesicherten Regelung',developing:'einer noch nicht gefestigten Regelung'}
+};
 const context={
  family:{
   en:['Current family decision-making','Succession or unexpected absence','Conflict or disrupted access'],
@@ -132,7 +137,7 @@ export function interpretReadiness(input){
  const a=[
   para(f(c.opening,{review:names[review][lang],count:counts.scored,unknown:counts.unknown,na:counts.na})),
   para(best?f(c.strong,{name:labelled(best),trace:reference(best)}):c.noStrong),
-  para(needing?f(c.weak,{name:labelled(needing),status:colour(needing),trace:reference(needing)}):scored.length?c.noWeak:c.noScored),
+  para(needing?f(c.weak,{name:labelled(needing),status:localStatus[lang][colour(needing)],trace:reference(needing)}):scored.length?c.noWeak:c.noScored),
   para(c.caveat)
  ];
  const b=[
