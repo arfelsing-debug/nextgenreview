@@ -105,7 +105,7 @@ export function expandReadinessPortrait({review,language,counts,dimensions,pairs
  // The Portrait explains the respondent's pattern and perspective. It does not
  // prescribe scenarios, repetitions of safeguards, or a second action plan.
  const first=[original[0],editorial.portraitPattern,original[1],original[2],original[3]].filter(Boolean);
- const second=[editorial.domain,editorial.portraitDeep,editorial.portraitPerspective,
+ const second=[editorial.domain,editorial.portraitImplication,editorial.portraitDeep,editorial.portraitPerspective,
   !editorial.visibility&&hasIndependentSecond?replace(c.secondStrength,substitutions):null
  ].filter(Boolean);
  return {
