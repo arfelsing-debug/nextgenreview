@@ -30,14 +30,14 @@ for i in range(60):
  time.sleep(3)
 else:raise AssertionError('healthy service was not reachable')
 page_count=health.get('reportPages') or health.get('reporting',{}).get('numberedPages',0)+health.get('reporting',{}).get('coverPages',0)
-assert page_count==23,health
+assert page_count==24,health
 version=health.get('interpretationVersion') or health.get('reporting',{}).get('interpretationVersion')
-assert version=='1.1.0',health
+assert version=='1.2.0',health
 audit['health']=health
 
 def check_pdf(data,png,label):
  document=fitz.open(stream=data,filetype='pdf')
- assert document.page_count==23,(label,document.page_count)
+ assert document.page_count==24,(label,document.page_count)
  actual_image=Image.open(io.BytesIO(png)).convert('RGB')
  ids=[]
  for index in [3]:
@@ -61,7 +61,7 @@ with sync_playwright() as playwright:
   report=json.loads(raw)
   assert report.get('language')==language
   assert report.get('specimen') and report.get('interpretation',{}).get('version')=='1.1.0'
-  assert len(report['pages'])==23
+  assert len(report['pages'])==24
   compass=report['compass']
   png=base64.b64decode(compass['image'].split(',')[1])
   assert digest(png)==compass['sha256'],language
@@ -71,7 +71,7 @@ with sync_playwright() as playwright:
   (out/('Specimen_'+language.upper()+'.pdf')).write_bytes(raw_pdf)
   (out/('Compass_'+language.upper()+'.png')).write_bytes(png)
   pdf=check_pdf(raw_pdf,png,language)
-  assert len([p for p in report['pages'] if p.get('interpretive')])==5
+  assert len([p for p in report['pages'] if p.get('interpretive')])==6
   audit['languages'].append({'language':language,'compass_sha256':compass['sha256'],**pdf})
   for device,width,height in [('desktop',1440,1100),('mobile',390,844)]:
    context=browser.new_context(viewport={'width':width,'height':height},accept_downloads=True)
@@ -80,7 +80,7 @@ with sync_playwright() as playwright:
    page.goto(base+'/?qa=specimen&lang='+language,wait_until='networkidle',timeout=120000)
    element=page.locator('img.canonical-compass')
    element.wait_for(state='visible',timeout=60000)
-   assert page.locator('.live-report-page').count()==23,(language,device,'incomplete browser report')
+   assert page.locator('.live-report-page').count()==24,(language,device,'incomplete browser report')
    assert element.get_attribute('data-compass-sha256')==compass['sha256']
    image=element.get_attribute('src')
    assert digest(base64.b64decode(image.split(',')[1]))==compass['sha256']
@@ -89,18 +89,19 @@ with sync_playwright() as playwright:
    assert not errors,(language,device,errors)
    element.screenshot(path=str(out/(language+'-'+device+'-compass.png')))
    page.locator('.live-report-page').nth(13).screenshot(path=str(out/(language+'-'+device+'-portrait.png')))
+   page.locator('.live-report-page').nth(14).screenshot(path=str(out/(language+'-'+device+'-portrait-continuation.png')))
    with page.expect_download(timeout=120000) as downloaded:
     page.locator('.live-report-toolbar button.acr-primary').first.click()
    file=downloaded.value;target=out/(language+'-'+device+'-download.pdf')
    file.save_as(str(target))
-   assert check_pdf(target.read_bytes(),png,language+'-'+device)['pdf_pages']==23
+   assert check_pdf(target.read_bytes(),png,language+'-'+device)['pdf_pages']==24
    assert not errors,errors
-   audit['checks'].append({'language':language,'device':device,'passed':True,'page_count':23})
+   audit['checks'].append({'language':language,'device':device,'passed':True,'page_count':24})
    context.close()
  browser.close()
 for name in ['mixed','established','exposed','unknown','not-applicable']:
  raw,_=get('/qa/specimen.json?language=en&case='+name)
- report=json.loads(raw);assert report['specimenCase']==name and len(report['pages'])==23
+ report=json.loads(raw);assert report['specimenCase']==name and len(report['pages'])==24
  audit['cases'].append(name)
 audit['status']='PASS';audit['verified_at_utc']=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())
 (out/'verification.json').write_text(json.dumps(audit,indent=2,ensure_ascii=False))
