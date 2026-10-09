@@ -100,7 +100,7 @@ export function expandReadinessPortrait({review,language,counts,dimensions,pairs
  if(!c||dimensions?.length!==6||pairs?.length!==24||priorities?.length!==3||!Array.isArray(original)||original.length<3)throw Error('invalid_portrait_expansion');
  const editorial=editorialRead({review,language,counts,dimensions,pairs,priorities});
  const ranked=dimensions.filter(scored).sort((a,b)=>b.mean-a.mean),firstDimension=ranked[0],next=ranked[1];
- const hasIndependentSecond=firstDimension&&next&&Math.abs(firstDimension.mean-next.mean)>=0.5;
+ const hasIndependentSecond=firstDimension&&next&&firstDimension!==next;
  const substitutions={top:label(firstDimension),next:label(next),nextStatus:status(next,c)};
  // The Portrait explains the respondent's pattern and perspective. It does not
  // prescribe scenarios, repetitions of safeguards, or a second action plan.
