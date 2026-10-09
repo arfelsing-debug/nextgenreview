@@ -38,11 +38,13 @@ export function extractNarrativeBrief(report,{review}={}){
  for(let i=0;i<6;i++){
   const scores=report.pages[i+6]?.scores||[];
   if(scores.length!==4)throw Error('invalid_pair_structure');
-  scores.forEach((r,j)=>pairs.push({
-   evidence_id:'E'+String(i*4+j+1).padStart(2,'0'),
-   dimension_id:dims[i].evidence_id,
-   name:normal(r.label),status:status(r.status),
-  }));
+  scores.forEach((r,j)=>{
+   const n=i*8+j*2+1;
+   const refs=review==='family'?[n,n+1].map(v=>['PUR','FAM','GOV','NGR','STR','RES'][i]+'-'+String(v-i*8).padStart(2,'0')):
+    [n,n+1].map(v=>({investment:'IMR-Q',adviser:'ACR-Q',shareholder:'SRR-Q',nextgen:'NRR-Q'})[review]+String(v).padStart(2,'0'));
+   pairs.push({evidence_id:'E'+String(i*4+j+1).padStart(2,'0'),dimension_id:dims[i].evidence_id,
+    name:normal(r.label),status:status(r.status),question_refs:refs});
+  });
  }
  const priorityPage=report.pages[5],names=(priorityPage?.items||[]).filter(x=>x.type==='heading').map(x=>normal(x.text).replace(/^\d+\.\s*/,'')).filter(Boolean).slice(0,3);
  const interpret=report.interpretation||{};
@@ -53,7 +55,17 @@ export function extractNarrativeBrief(report,{review}={}){
  const counts={scored:Number.isInteger(scored)?scored:null,unknown:Number.isInteger(unknown)?unknown:null,not_applicable:Number.isInteger(na)?na:null};
  if((counts.scored??0)+(counts.unknown??0)+(counts.not_applicable??0)!==48)throw Error('invalid_coverage');
  const validIds=[...dims,...pairs].map(x=>x.evidence_id);
- return {review,language:report.language,scope:domains[review],counts,dimensions:dims,pairs,priorities:names,allowed_evidence_ids:validIds,
+ const known=dims.filter(d=>d.status!=='unscored');
+ const distinct=new Set(known.map(d=>d.status));
+ const profile={
+  shape:counts.scored===0?'no_scored_answers':known.length<3?'limited_visibility':
+   known.length===6&&known.every(d=>d.status==='established')?'uniformly_established':
+   known.length===6&&known.every(d=>d.status==='exposed')?'uniformly_exposed':
+   distinct.size===1?'similar_ratings':'mixed_ratings',
+  dimension_status_counts:Object.fromEntries(['established','developing','exposed','unscored'].map(k=>[k,dims.filter(d=>d.status===k).length])),
+  pair_status_counts:Object.fromEntries(['established','developing','exposed','unscored'].map(k=>[k,pairs.filter(p=>p.status===k).length]))
+ };
+ return {review,language:report.language,scope:domains[review],counts,profile,dimensions:dims,pairs,priorities:names,allowed_evidence_ids:validIds,
   limitations:'One respondent, self-report only; not independent confirmation of facts, other stakeholders or future outcomes.'};
 }
 export function buildEditorialInstructions(language){
@@ -77,6 +89,9 @@ export function buildEditorialInstructions(language){
   'Ground material observations in the named dimensions and subdimensions, using only their supplied statuses.',
   'For EACH section return evidence_ids listing 2 to 6 supporting IDs from allowed_evidence_ids; never invent IDs.',
   'If scored coverage is low, do not assert strengths or weaknesses. Explain the limits of visibility concisely.',
+  'Use the supplied profile.shape explicitly to distinguish uniform, mixed and low-visibility response patterns; never create contrasts when scores are tied.',
+  'Uniformly established results offer no evidence of weak dimensions; uniformly exposed results offer no evidenced strengths; unscored results support neither positive nor negative findings.',
+  'Question references describe which statements were rated. They are not documents, interviews or independently verified events.',
   'Never treat ties or a uniformly high profile as an uneven or unbalanced pattern. Scenarios are possibilities, not measured predictions.',
   'Do not recommend investment transactions, legal steps or changes to governance based solely on scores.',
   'Return only the specified JSON object.'
@@ -135,6 +150,7 @@ export function crossProfileSimilarity(reportA,reportB){
   warnsStockProse:byPage.some(p=>p.overlap>.50)};
 }
 export function applyEditorialDraft(report,draft,brief,{model='fictional-draft'}={}){
+ if(report?.specimen!==true||report.language!==brief?.language||!domains[brief?.review])throw Error('fictional_only_editorial_overlay');
  validateEditorialDraft(draft,brief);
  // Only replace the four narrative pages, preserving the Compass, scores,
  // priorities, canonical chapter order, page numbering and original archive.
