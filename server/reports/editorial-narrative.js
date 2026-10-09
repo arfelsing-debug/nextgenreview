@@ -110,6 +110,28 @@ function outputText(response){
  const parts=(response.output||[]).flatMap(x=>x.content||[]).filter(x=>x.type==='output_text'&&typeof x.text==='string').map(x=>x.text);
  return parts.join('')||response.output_text||'';
 }
+/**
+ * Compare actual output across unlike respondent profiles.
+ * Four-word shingles detect recurring stock prose independently of
+ * changing dimension labels. Reviewers must still judge nuance manually.
+ */
+export function crossProfileSimilarity(reportA,reportB){
+ if(!reportA?.editorial||!reportB?.editorial)throw Error('requires_two_editorial_reports');
+ if(reportA.editorial.source!=='fictional-specimen-only'||reportB.editorial.source!=='fictional-specimen-only')throw Error('fictional_only_comparison');
+ const shingles=t=>{
+  const a=String(t||'').toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim().split(/\s+/).filter(Boolean),n=new Set();
+  for(let i=0;i<a.length-3;i++)n.add(a.slice(i,i+4).join(' '));return n;
+ };
+ const byPage=[];
+ for(const i of NARRATIVE_PAGE_NUMBERS){
+  const extract=r=>r.pages[i].items.filter(x=>x.type==='paragraph').map(x=>x.text).join(' ');
+  const a=shingles(extract(reportA)),b=shingles(extract(reportB));let common=0;
+  for(const phrase of a)if(b.has(phrase))common++;
+  byPage.push({page:i,sharedFourWordSequences:common,overlap:common/Math.max(1,Math.min(a.size,b.size))});
+ }
+ return {pages:byPage,maxOverlap:Math.max(...byPage.map(p=>p.overlap)),
+  warnsStockProse:byPage.some(p=>p.overlap>.50)};
+}
 export function applyEditorialDraft(report,draft,brief,{model='fictional-draft'}={}){
  validateEditorialDraft(draft,brief);
  // Only replace the four narrative pages, preserving the Compass, scores,
