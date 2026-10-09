@@ -62,7 +62,7 @@ const language={
   opening:'Dieses Bild zur {review} beruht auf {count} numerisch bewerteten Antworten von 48. Weitere {unknown} Antworten sind unbekannt und {na} nicht anwendbar. Es gibt die Sicht einer befragten Person auf Regelungen und Erfahrungen wieder, nicht eine unabhängige Prüfung oder einen Bevölkerungsvergleich.',
   strong:'Die deutlichste berichtete Grundlage betrifft {name}. Das Ergebnis legt einen brauchbaren Ausgangspunkt nahe, der durch eine jüngere Entscheidung, ein Dokument oder ein praktisches Beispiel zu bestätigen ist ({trace}). Diese Grundlage auch bei veränderten Personen und Umständen zu erhalten, bedarf bewusster Aufmerksamkeit.',
   noStrong:'Unter den vollständig bewerteten Teilbereichen zeigt sich noch keine eindeutig etablierte Grundlage. Dies kann auf begrenzte Vorbereitung, eingeschränkte Sichtbarkeit oder eine vorsichtige Beurteilung zurückgehen. Vor einer positiven oder negativen Schlussfolgerung sind weitere Beispiele nötig.',
-  weak:'Zunächst sollte der Bereich {name} untersucht werden, in dem die Antworten einen Zustand von {status} erkennen lassen ({trace}). Klären Sie, welche Regelungen tatsächlich bestehen, wer diese bestätigen kann und ob eine praktische Prüfung die Einschätzung stützt oder verändert.',
+  weak:'Zunächst sollte der Bereich {name} untersucht werden; die Antworten deuten auf {status} hin ({trace}). Klären Sie, welche Regelungen tatsächlich bestehen, wer diese bestätigen kann und ob eine praktische Prüfung die Einschätzung stützt oder verändert.',
   noWeak:'Kein vollständig bewerteter Bereich wurde als anfällig oder im Aufbau eingestuft. Dies belegt allein noch keine Belastbarkeit; auch starke Bereiche sollten praktisch geprüft werden.',
   noScored:'Es liegen keine hinreichend bewerteten Teilbereiche vor, aus denen sich Stärken oder Schwächen ableiten lassen. Zunächst müssen Informationen und Anwendbarkeit geklärt werden.',
   cross:'Die berichtete Stärke bei {first} steht einer weniger entwickelten Regelung bei {second} gegenüber. Selbst wenn beide im Alltag funktionieren, könnte der zweite Bereich die Dauerhaftigkeit des ersten einschränken. Diese Hypothese lässt sich anhand der Antworten {trace} prüfen.',
@@ -81,7 +81,7 @@ const language={
 const localStatus={
  en:{exposed:'an exposure',developing:'developing preparedness'},
  cs:{exposed:'zranitelnosti',developing:'postupného rozvoje'},
- de:{exposed:'einer noch unzureichend abgesicherten Regelung',developing:'einer noch nicht gefestigten Regelung'}
+ de:{exposed:'eine mögliche Schwachstelle',developing:'einen Entwicklungsbedarf'}
 };
 const context={
  family:{
