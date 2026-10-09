@@ -60,7 +60,7 @@ with sync_playwright() as playwright:
   raw,headers=get('/qa/specimen.json?language='+language)
   report=json.loads(raw)
   assert report.get('language')==language
-  assert report.get('specimen') and report.get('interpretation',{}).get('version')=='1.1.0'
+  assert report.get('specimen') and report.get('interpretation',{}).get('version')=='1.2.0'
   assert len(report['pages'])==25
   compass=report['compass']
   png=base64.b64decode(compass['image'].split(',')[1])
