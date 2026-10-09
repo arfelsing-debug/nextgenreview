@@ -113,7 +113,6 @@ export function expandReadinessPortrait({review,language,counts,dimensions,pairs
  const substantialContrast=full&&best.mean-weak.mean>=1.5&&best!==weak;
  const second=[
   substantialContrast?replace(c.different,d):c.noDifferent,
-  ...(full?[replace(c.shared,d)]:[]),
   replace(c.ordinary,d),replace(c.transition,d),replace(c.pressure,d),
   replace(c.close,d),
   ...((counts?.unknown||0)+(counts?.na||0)>=8?[c.limited]:[])
