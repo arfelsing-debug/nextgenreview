@@ -141,7 +141,8 @@ const kind=v=>{
 };
 const lbl=x=>String(x?.name||x?.title||x?.label||'').trim();
 const tr=x=>String(x?.trace||x?.evidenceTrace||(Array.isArray(x?.questions)?x.questions.join(', '):'')).trim();
-const usable=x=>kind(x)!=='unscored'&&Number.isFinite(x?.mean);
+const score=x=>Number.isFinite(x?.mean)?x.mean:(Number.isFinite(x?.average)?x.average:null);
+const usable=x=>kind(x)!=='unscored'&&score(x)!==null;
 const suffix=(key,locale)=>({
  en:{established:'established',developing:'developing',exposed:'exposed'},
  cs:{established:'zakotvená',developing:'rozvíjející se',exposed:'zranitelná'},
@@ -152,18 +153,18 @@ function confirmedContrast(review,pairs){
  for(const [a,b] of relation[review]||[]){
   const left=pairs.slice(a*4,a*4+4).filter(x=>usable(x)&&kind(x)==='established'&&tr(x));
   const right=pairs.slice(b*4,b*4+4).filter(x=>usable(x)&&['developing','exposed'].includes(kind(x))&&tr(x));
-  if(left.length&&right.length){left.sort((x,y)=>y.mean-x.mean);right.sort((x,y)=>x.mean-y.mean);return [left[0],right[0]];}
+  if(left.length&&right.length){left.sort((x,y)=>score(y)-score(x));right.sort((x,y)=>score(x)-score(y));return [left[0],right[0]];}
  }
  return null;
 }
 export function editorialRead({review,language,counts,dimensions,pairs,priorities}){
  if(!relation[review]||!supported.includes(language)||dimensions?.length!==6||pairs?.length!==24||priorities?.length!==3)throw Error('invalid_editorial_input');
- const t=phrase[language],dims=dimensions.filter(usable).sort((a,b)=>b.mean-a.mean),available=pairs.filter(usable).sort((a,b)=>b.mean-a.mean);
+ const t=phrase[language],dims=dimensions.filter(usable).sort((a,b)=>score(b)-score(a)),available=pairs.filter(usable).sort((a,b)=>score(b)-score(a));
  const high=dims[0],low=dims.at(-1),strong=available.find(x=>kind(x)==='established'),weak=[...available].reverse().find(x=>['exposed','developing'].includes(kind(x)));
  const secondStrong=available.find(x=>x!==strong&&kind(x)==='established'&&Math.floor((x.index??pairs.indexOf(x))/4)!==Math.floor((strong?.index??pairs.indexOf(strong))/4))||null;
  const scored=counts?.scored??0,unknown=counts?.unknown??0,na=counts?.na??0;
  const categories=dims.map(kind),established=categories.filter(x=>x==='established').length,exposed=categories.filter(x=>x==='exposed').length,developing=categories.filter(x=>x==='developing').length;
- const spread=high&&low?high.mean-low.mean:0;
+ const spread=high&&low?score(high)-score(low):0;
  const variables={scored,unknown,na,n:established,high:lbl(high),low:lbl(low),highRef:tr(high),lowRef:tr(low),
  strong:lbl(strong),strongRef:tr(strong),second:lbl(secondStrong),secondRef:tr(secondStrong),weak:lbl(weak),weakRef:tr(weak),
  weakLevel:suffix(kind(weak),language),priority:lbl(priorities[0]),priorityRef:tr(priorities[0])};
