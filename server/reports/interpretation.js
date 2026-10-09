@@ -83,6 +83,28 @@ const localStatus={
  cs:{exposed:'zranitelnosti',developing:'postupného rozvoje'},
  de:{exposed:'eine mögliche Schwachstelle',developing:'einen Entwicklungsbedarf'}
 };
+const scenarioDetails={
+ family:{
+  en:['Trace one recent family decision through its actual forum, authority and written record.','Confirm who can act if a principal decision-maker is unavailable, including successor access and consent requirements.','Test how a genuine disagreement would be escalated and whether vital documents remain accessible.'],
+  cs:['Sledujte jedno nedávné rodinné rozhodnutí od příslušného orgánu přes pravomoc až k písemnému záznamu.','Ověřte, kdo může jednat při nepřítomnosti hlavní rozhodující osoby, včetně přístupu nástupců a potřebných souhlasů.','Vyzkoušejte řešení skutečné neshody a dostupnost zásadních dokumentů.'],
+  de:['Verfolgen Sie eine jüngere Familienentscheidung vom zuständigen Gremium über die Befugnis bis zum Protokoll.','Prüfen Sie bei Ausfall einer maßgeblichen Person Nachfolgebefugnisse, Dokumentenzugang und Zustimmungserfordernisse.','Testen Sie den Eskalationsweg bei Streit und den Zugang zu wesentlichen Unterlagen.']
+ },
+ adviser:{
+  en:['Follow one complex instruction through the adviser mandates, confidentiality boundaries and final accountable decision.','Check whether workpapers, contacts and unresolved advice can transfer when a key professional leaves.','Rehearse a time-sensitive decision requiring several advisers and identify who resolves conflicting recommendations.'],
+  cs:['Sledujte jeden složitější pokyn přes mandáty poradců, hranice důvěrnosti a konečnou odpovědnost za rozhodnutí.','Ověřte předání podkladů, kontaktů a otevřených rad při odchodu hlavního odborníka.','Vyzkoušejte časově naléhavé rozhodnutí více poradců a způsob řešení protichůdných doporučení.'],
+  de:['Verfolgen Sie einen komplexen Auftrag über Beratermandate, Vertraulichkeitsgrenzen und die endgültige Entscheidungsverantwortung.','Prüfen Sie die Übergabe von Arbeitsunterlagen, Kontakten und offenen Beratungsfragen beim Wechsel einer Schlüsselperson.','Simulieren Sie eine dringende Entscheidung mehrerer Berater und klären Sie die Auflösung widersprüchlicher Empfehlungen.']
+ },
+ shareholder:{
+  en:['Trace the documents and timely information used before an actual shareholder decision or vote.','Check transfer restrictions, consent requirements and the continuity of voting or representation arrangements.','Rehearse an urgent vote or disagreement, including valid authority, notice and access to governing documents.'],
+  cs:['Ověřte dokumenty a včasné informace použité před skutečným rozhodnutím nebo hlasováním akcionáře.','Prověřte omezení převodu, potřebné souhlasy a kontinuitu hlasovacích či zastupitelských pravidel.','Vyzkoušejte naléhavé hlasování či spor, včetně platné pravomoci, oznámení a přístupu k dokumentům.'],
+  de:['Prüfen Sie Dokumente und rechtzeitige Informationen vor einer tatsächlichen Anteilseignerentscheidung oder Abstimmung.','Prüfen Sie Übertragungsbeschränkungen, Zustimmungserfordernisse und die Kontinuität von Stimmrechts- und Vertretungsregelungen.','Simulieren Sie eine dringende Abstimmung oder einen Konflikt mit gültiger Befugnis, Fristen und Dokumentenzugang.']
+ },
+ nextgen:{
+  en:['Identify one supervised responsibility the respondent can practise now and the feedback by which it will be evaluated.','Agree what authority and support would accompany an initial ownership or governance role before it begins.','Rehearse essential contacts, information access and decision limits if responsibility arrives unexpectedly.'],
+  cs:['Určete jednu odpovědnost, kterou lze nyní bezpečně vyzkoušet pod dohledem, včetně zpětné vazby.','Před převzetím první vlastnické či řídicí role dohodněte pravomoci a potřebnou podporu.','Vyzkoušejte zásadní kontakty, přístup k informacím a meze rozhodování při nečekaném převzetí odpovědnosti.'],
+  de:['Bestimmen Sie eine beaufsichtigte Aufgabe, die jetzt geübt und anhand vereinbarter Rückmeldungen bewertet werden kann.','Vereinbaren Sie vor einer ersten Eigentümer- oder Führungsaufgabe Befugnisse und notwendige Unterstützung.','Üben Sie wesentliche Kontakte, Informationszugang und Entscheidungsgrenzen bei unerwarteter Übernahme von Verantwortung.']
+ }
+};
 const context={
  family:{
   en:['Current family decision-making','Succession or unexpected absence','Conflict or disrupted access'],
@@ -168,7 +190,7 @@ export function interpretReadiness(input){
   fields(reference(dimensions[4]),reference(dimensions[5])),
   fields(reference(dimensions[2]),reference(dimensions[3]))
  ];
- const d=cond.flatMap((s,i)=>[head(scenarioNames[i]),para(s),field(c.trace,refs[i]||pairRefs)]);
+ const d=cond.flatMap((s,i)=>[head(scenarioNames[i]),para(s+' '+scenarioDetails[review][lang][i]),field(c.trace,refs[i]||pairRefs)]);
  d.push(para(c.scenariosCaution));
  const actionItems=r=>[head(labelled(r)),para(f(c.priority,{num:priorities.indexOf(r)+1,name:labelled(r)})),field(c.verify,r.action||r.firstAction||c.evidence),field(c.completion,r.progress||r.completionEvidence||r.responseProgress||c.evidence),field(c.trace,reference(r)),field(c.lead,c.follow)];
  const out=[
