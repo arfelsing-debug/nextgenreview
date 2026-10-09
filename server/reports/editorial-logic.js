@@ -148,7 +148,7 @@ export function editorialRead({review,language,counts,dimensions,pairs,prioritie
  const def=dependency?{left:lbl(dependency[0]),leftRef:tr(dependency[0]),right:lbl(dependency[1]),rightRef:tr(dependency[1]),rightLevel:suffix(kind(dependency[1]),language)}:null;
  const evidence=tr(weak)||tr(strong)||tr(priorities[0])||'';
  return {
-  version:EDITORIAL_VERSION,pattern,visibility,dependency:!!def,scored,locale:language,
+  version:EDITORIAL_VERSION,pattern,visibility,hasDependency:!!def,scored,locale:language,
   portraitPattern:fill(t[pattern],variables),
   domain:visibility?t.contextual:fill(domains[review][language],variables),
   portraitDeep:visibility?fill(t.uncertainty,variables):fill(t.focused,variables),
