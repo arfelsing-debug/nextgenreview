@@ -153,12 +153,12 @@ export function editorialRead({review,language,counts,dimensions,pairs,prioritie
   domain:visibility?t.contextual:fill(domains[review][language],variables),
   portraitDeep:visibility?fill(t.uncertainty,variables):fill(t.focused,variables),
   portraitPerspective:visibility?t.noEvidence:t.contextual,
-  strength:visibility?t.noStrength:strong?fill(t.strength,variables):t.noStrength,
+  strength:strong?fill(t.strength,variables):t.noStrength,
   secondStrength:!visibility&&secondStrong?fill(t.secondStrength,variables):null,
-  exposure:visibility?t.noEvidence:weak?fill(t.exposure,variables):t.noExposure,
+  exposure:weak?fill(t.exposure,variables):t.noExposure,
   dependency:visibility?null:def?fill(t.dependency,def):t.noDependency,
   consequence:visibility?null:weak?fill(t.consequence,variables):null,
-  uncertainty:(unknown+na)?fill(t.uncertainty,variables):null,
+  uncertainty:!visibility&&(unknown+na)?fill(t.uncertainty,variables):null,
   evidence:fill(t.evidence,variables),
   trace:evidence
  };
