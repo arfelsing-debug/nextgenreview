@@ -40,7 +40,7 @@ def check_pdf(data,png,label):
  assert document.page_count==23,(label,document.page_count)
  actual_image=Image.open(io.BytesIO(png)).convert('RGB')
  ids=[]
- for index in [0,3]:
+ for index in [3]:
   images=document[index].get_images(full=True)
   options=[z for z in images if z[2:4]==(actual_image.width,actual_image.height)]
   assert len(options)==1,(label,index,'canonical compass missing/duplicate',options)
@@ -51,8 +51,8 @@ def check_pdf(data,png,label):
   rect=document[index].get_image_rects(obj)
   assert len(rect)==1 and document[index].rect.contains(rect[0]),(label,index,'Compass clipped')
   ids.append(obj)
- assert ids[0]==ids[1],(label,'multiple PDF compass objects')
- return {'pdf_pages':document.page_count,'pdf_sha256':digest(data),'shared_compass_xref':ids[0]}
+ assert document[0].get_images(full=True),(label,'approved cover hero missing')
+ return {'pdf_pages':document.page_count,'pdf_sha256':digest(data),'page3_compass_xref':ids[0]}
 
 with sync_playwright() as playwright:
  browser=playwright.chromium.launch()
