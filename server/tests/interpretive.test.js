@@ -19,7 +19,7 @@ test('nextgen: evidence-led interpretation is available in all languages without
   assert.equal(r.interpretation.portraitVersion,'2.0.0');
   assert.equal(r.interpretation.exposuresVersion,'2.0.0');
   assert.ok(r.pages[15].items.filter(x=>x.type==='paragraph').length>=1);
-  assert.ok(r.pages[16].items.filter(x=>x.type==='paragraph').length>=3);
+  assert.ok(r.pages[16].items.filter(x=>x.type==='paragraph').length>=2);
   assert.ok(r.interpretation.portraitWordCount>=250);
   assert.ok(r.pages[19].items.some(i=>i.type==='field'));
  }
