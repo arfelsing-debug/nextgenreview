@@ -45,7 +45,7 @@ async function qaSpecimen(req,res){
 app.get('/qa/specimen.json',qaSpecimen);
 app.get('/qa/specimen.pdf',qaSpecimen);
 app.get('/qa/specimen.png',qaSpecimen);
-app.get("/health",(req,res)=>res.json({ok:true,service:"nextgenreview",reporting:{letterSummaryVersion:"1.0.0",contentVersion:reportContract.content_version,languages:reportContract.supported_languages,numberedPages:22,coverPages:1,interpretationVersion:"1.1.0"}}));const here=path.dirname(fileURLToPath(import.meta.url)),dist=path.resolve(here,"../../dist");app.use(express.static(dist));app.get("/{*splat}",(req,res)=>res.sendFile(path.join(dist,"index.html")));
+app.get("/health",(req,res)=>res.json({ok:true,service:"nextgenreview",reporting:{letterSummaryVersion:"1.0.0",contentVersion:reportContract.content_version,languages:reportContract.supported_languages,numberedPages:24,coverPages:1,interpretationVersion:"1.2.0"}}));const here=path.dirname(fileURLToPath(import.meta.url)),dist=path.resolve(here,"../../dist");app.use(express.static(dist));app.get("/{*splat}",(req,res)=>res.sendFile(path.join(dist,"index.html")));
 const port=Number(process.env.PORT||3001);app.listen(port,()=>console.log("NextGen server listening",port));
 
 
