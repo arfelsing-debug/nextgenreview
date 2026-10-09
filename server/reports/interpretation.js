@@ -159,5 +159,5 @@ export function interpretReadiness(input){
   page(c.continued,[...actionItems(priorities[2]),para(c.caveat)])
  ];
  return {version:interpretationVersion,review,language:lang,counts,
-  priorityIds:priorities.map((x,i)=>x.id??x.index??reference(x)||String(i)),pages:out};
+  priorityIds:priorities.map((x,i)=>x.id??x.index??(reference(x)||String(i))),pages:out};
 }
