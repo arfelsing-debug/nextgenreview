@@ -18,15 +18,15 @@ test('balanced and universally exposed profiles receive different warranted read
   assert.equal(a.version,EDITORIAL_VERSION);
   assert.equal(a.pattern,'balanced');assert.equal(b.pattern,'low');
   assert.notEqual(a.portraitPattern,b.portraitPattern);
-  assert.ok(a.strength.includes('Q'));assert.equal(a.dependency,false);
-  assert.equal(b.dependency,false);assert.ok(!a.portraitPattern.toLowerCase().includes('uneven'));
+  assert.ok(a.strength.includes('Q'));assert.equal(a.hasDependency,false);
+  assert.equal(b.hasDependency,false);assert.ok(!a.portraitPattern.toLowerCase().includes('uneven'));
  }
 });
 test('missing information remains unscored and does not produce repetitive claims',()=>{
  for(const language of ['en','cs','de']){
   const r=editorialRead({...unscored(),language});
   assert.equal(r.pattern,'partial');assert.equal(r.visibility,true);
-  assert.equal(r.dependency,false);assert.equal(r.consequence,null);
+  assert.equal(r.hasDependency,false);assert.equal(r.consequence,null);
   assert.equal(r.uncertainty,null);assert.equal(r.strength.includes('Q'),false);
   const v=[r.portraitPattern,r.domain,r.portraitDeep,r.portraitPerspective,r.strength,r.exposure,r.evidence];
   assert.equal(new Set(v).size,v.length,'avoid identical paragraphs');
@@ -41,8 +41,8 @@ test('only methodologically predeclared pair relationships trigger dependency cl
   config.pairs[a].status='established';config.pairs[a].level=3;config.pairs[a].mean=4;
   config.pairs[b].status='exposed';config.pairs[b].level=1;config.pairs[b].mean=1;
  }
- assert.equal(editorialRead({...config,language:'en'}).dependency,true);
- assert.equal(editorialRead({...make(Array(6).fill('developing')),language:'en'}).dependency,false);
+ assert.equal(editorialRead({...config,language:'en'}).hasDependency,true);
+ assert.equal(editorialRead({...make(Array(6).fill('developing')),language:'en'}).hasDependency,false);
 });
 test('narratives are deterministic, differentiated and leave no template placeholders',()=>{
  for(const language of ['en','cs','de'])for(const source of [strong(),weak(),unscored(),make(['established','established','developing','exposed','exposed','developing'])]){
