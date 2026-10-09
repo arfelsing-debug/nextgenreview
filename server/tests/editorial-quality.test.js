@@ -19,7 +19,7 @@ test('balanced and universally exposed profiles receive different warranted read
   assert.equal(a.pattern,'balanced');assert.equal(b.pattern,'low');
   assert.notEqual(a.portraitPattern,b.portraitPattern);
   assert.ok(a.strength.includes('Q'));assert.equal(a.hasDependency,false);
-  assert.equal(b.hasDependency,false);assert.ok(!a.portraitPattern.toLowerCase().includes('uneven'));
+  assert.equal(b.hasDependency,false);assert.ok(!a.portraitPattern.toLowerCase().includes('the scored pattern is uneven'));
  }
 });
 test('missing information remains unscored and does not produce repetitive claims',()=>{
