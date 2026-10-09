@@ -1,0 +1,26 @@
+name: Validate NextGen Interpretive Reports
+on:
+  pull_request:
+    paths:
+      - 'server/**'
+      - 'src/**'
+      - '.github/workflows/nextgen-interpretation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install server dependencies
+        run: npm ci --prefix server --ignore-scripts
+      - name: Validate scored models, interpretation and PDF layout
+        run: npm test --prefix server
+      - name: Install UI dependencies
+        run: npm ci
+      - name: Compile online report
+        run: npm run build
