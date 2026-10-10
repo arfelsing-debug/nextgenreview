@@ -1,7 +1,8 @@
 import {specimenReport} from '../reports/specimen.js';
+import {installPublicHostRouting} from './public-host-routing.js';
 import {installReportRoutes} from '../reports/routes.js';import {contract as reportContract} from '../reports/model.js';import {buildReport} from '../reports/pages.js';import {renderPDF} from '../reports/pdf.js';
 import express from "express";import path from "node:path";import{fileURLToPath}from"node:url";import helmet from "helmet";import cookieParser from "cookie-parser";import{rateLimit}from"express-rate-limit";import{randomToken,sha256,sessionCookieOptions,ipFingerprint}from"./security.js";import{pgstore as store}from"./pgstore.js";import{issueCsrf,verifyCsrf}from"./csrf.js";import{locateIp}from"./geolocation.js";
-const app=express();app.set("trust proxy",1);app.use(helmet());app.use(express.json({limit:"32kb"}));app.use(cookieParser());app.use("/api/",rateLimit({windowMs:60_000,limit:60,standardHeaders:"draft-8",legacyHeaders:false}));const accessLimiter=rateLimit({windowMs:60*60_000,limit:5,standardHeaders:"draft-8",legacyHeaders:false});
+const app=express();app.set("trust proxy",1);installPublicHostRouting(app);app.use(helmet());app.use(express.json({limit:"32kb"}));app.use(cookieParser());app.use("/api/",rateLimit({windowMs:60_000,limit:60,standardHeaders:"draft-8",legacyHeaders:false}));const accessLimiter=rateLimit({windowMs:60*60_000,limit:5,standardHeaders:"draft-8",legacyHeaders:false});
 const ADMIN=process.env.NEXTGEN_ADMIN_KEY;
 const ADMIN_KEYS=(()=>{try{return JSON.parse(process.env.NEXTGEN_ADMIN_KEYS||"{}")}catch{return {}}})();
 const WORDPRESS_BRIDGE_KEY=process.env.NEXTGEN_WORDPRESS_BRIDGE_KEY;
