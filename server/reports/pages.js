@@ -58,7 +58,7 @@ export function buildReport(answers,language,{now=new Date()}={}){
  original.pages.splice(13,0,...interp.pages.map(q=>({...q,number:0,subtitle:'',interpretiveVersion:interp.version})));
  original.pages.forEach((p,i)=>{p.number=i;});
  original.numberedPages=original.pages.length-1;
- original.interpretation={version:interp.version,portraitVersion:interp.portraitVersion,portraitWordCount:interp.portraitWordCount,exposuresVersion:interp.exposuresVersion,exposuresWordCount:interp.exposuresWordCount,review:interp.review,coverage:interp.counts,priorityIds:interp.priorityIds,scope:'self-reported; confirmation required'};
+ original.interpretation={version:interp.version,portraitVersion:interp.portraitVersion,portraitWordCount:interp.portraitWordCount,portraitPattern:interp.portraitPattern,exposuresVersion:interp.exposuresVersion,exposuresWordCount:interp.exposuresWordCount,review:interp.review,coverage:interp.counts,priorityIds:interp.priorityIds,scope:'self-reported; confirmation required'};
  return markReportNames(original);
 }
 
