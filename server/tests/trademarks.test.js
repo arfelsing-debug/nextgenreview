@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {markReviewNames,markReportNames,reviewTextWidth,drawReviewText} from '../reports/trademarks.js';
 test('named products have one trademark; ordinary review instructions remain unchanged',()=>{
  for(const name of ['Family Continuity Review','NextGen Readiness Review','Shareholder Readiness Review','Adviser Coordination Review','Investment Manager Review','Legal Adviser Review','Trustee Relationship Review','Founder Dependency Review','Family Governance Review','Trustee Governance Review','Family Office Institutionalisation Review','Stewardship Review','Annual Continuity Monitoring','Familienkontinuitätsanalyse']){
@@ -14,4 +15,10 @@ test('PDF marks use exactly 33% of the font size and rise above the baseline',()
  drawReviewText({drawText:(s,options)=>calls.push([s,options])},'Shareholder Readiness Review',{x:10,y:20,size:12,font});
  assert.equal(calls[1][0],'™');assert.equal(calls[1][1].size,12*.33);assert.ok(calls[1][1].y>20);
  assert.equal(reviewTextWidth(font,'Shareholder Readiness Review',12),'Shareholder Readiness Review'.length*12+12*.33);
+});
+
+test('entry heading delegates trademark rendering exactly once',()=>{
+ const source=fs.readFileSync(new URL('../../src/main.jsx',import.meta.url),'utf8');
+ assert.match(source,/function ReviewTitle\(\{title\}\)\{return <>\{reviewText\(title\)\}<\/>\}/);
+ assert.doesNotMatch(source,/function ReviewTitle[\s\S]{0,180}<sup>/);
 });
