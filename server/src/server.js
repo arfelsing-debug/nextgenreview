@@ -31,6 +31,19 @@ app.delete("/api/admin/invitations/:id",admin,async(req,res)=>{const ok=await st
 app.get("/api/session",async(req,res)=>{const s=await current(req);if(!s)return res.status(401).json({error:"unauthorized"});const c=issueCsrf();await store.rotateCsrf(s.id,c.hash);res.json({language:s.language,completed:s.completed,responses:(await store.responses(s.id))?.answers||{},csrfToken:c.token})});
 app.put("/api/responses",csrf,async(req,res)=>{const s=req.reviewSession;if(!s)return res.status(401).json({error:"unauthorized"});const answers=req.body.answers||{};for(const[k,v]of Object.entries(answers)){if(!/^NRR-Q(0[1-9]|[1-3][0-9]|4[0-8])$/.test(k)||![1,2,3,4,5,"dk","na"].includes(v))return res.status(400).json({error:"invalid_response"})}await store.saveResponses(s.id,{answers});res.json({ok:true})});
 app.post("/api/complete",csrf,async(req,res)=>{const s=req.reviewSession;if(!s)return res.status(401).json({error:"unauthorized"});const a=(await store.responses(s.id))?.answers||{};if(Object.keys(a).length!==48)return res.status(400).json({error:"incomplete"});const report=buildReport(a,s.language),pdf=await renderPDF(report);await store.completeAndArchive(s.id,{id:randomToken(18),invitationId:s.invitationId,fullName:s.fullName,email:s.email,language:s.language,report,pdfBytes:Buffer.from(pdf.bytes),pdfSha256:sha256(Buffer.from(pdf.bytes)),reportVersion:reportContract.content_version});res.json({ok:true})});
+app.post("/api/report/email",csrf,async(req,res)=>{try{
+ const s=req.reviewSession;if(!s||!s.completed)return res.status(409).json({error:"review_incomplete"});
+ const email=String(s.email||"").trim();if(!/^\\S+@\\S+\\.\\S+$/.test(email))return res.status(409).json({error:"invitation_email_unavailable"});
+ if(!WORDPRESS_BRIDGE_KEY)return res.status(503).json({error:"report_bridge_not_configured"});
+ const language=req.body?.language??s.language;if(!reportContract.supported_languages.includes(language))return res.status(400).json({error:"unsupported_language"});
+ const archived=await store.reportForSession(s.id);if(!archived)return res.status(409).json({error:"report_not_archived"});
+ const saved=archived.language===language?null:await store.responses(s.id);
+ const presentation=archived.language===language?archived.report_json:buildReport(saved?.answers||{},language);
+ const pdf=await renderPDF(presentation),bytes=Buffer.from(pdf.bytes);
+ const upstream=await fetch(WORDPRESS_ORIGIN+"/wp-json/adamas-continuity/v1/nextgen-report-mail",{method:"POST",headers:{"Content-Type":"application/json","x-nextgen-admin-key":WORDPRESS_BRIDGE_KEY},body:JSON.stringify({email,language,contentVersion:reportContract.content_version,pdfBase64:bytes.toString("base64"),pdfSha256:sha256(bytes)})});
+ const result=await upstream.json().catch(()=>({}));if(!upstream.ok)return res.status(502).json({error:"report_delivery_failed",upstream:result.code||result.error||"unknown"});
+ res.json({ok:true,email,delivery:result.delivery||"accepted"});
+}catch(error){console.error("NextGen report email failed",error);res.status(502).json({error:"report_delivery_failed"})}});
 installReportRoutes(app,{current,store});
 async function qaSpecimen(req,res){
  try{
