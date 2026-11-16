@@ -7,3 +7,5 @@ export function saveAnswers(answers){pendingSave=pendingSave.catch(()=>{}).then(
 export async function complete(){await pendingSave;return request("/api/complete",{method:"POST",body:"{}"})}
 
 
+
+export async function emailReport(language){return request("/api/report/email",{method:"POST",body:JSON.stringify({language})})}
